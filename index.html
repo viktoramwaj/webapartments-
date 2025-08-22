@@ -1,106 +1,347 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Amwaj Apartments</title>
+<title>Amwaj Apartments — Корпус 20 (2BR) и Корпус 6 (1BR)</title>
+<meta name="description" content="12 апартаментов в Amwaj, Nabq Bay: 6 двухспальных (корпус 20) и 6 однокомнатных (корпус 6). Прямое бронирование.">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0b3d3d">
 <style>
- body{background:#082d2e;color:#e8f6f4;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0}
- .wrap{max-width:1100px;margin:0 auto;padding:20px}
- h1{margin:10px 0 20px}
- .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
- .card{background:#0a3434;border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden}
- .photo{aspect-ratio:16/10;background:#0e5556;display:flex;align-items:center;justify-content:center}
- .thumbs{display:flex;gap:8px;overflow:auto;padding:10px;background:#093131;border-top:1px solid rgba(255,255,255,.08)}
- .thumbs img{height:56px;border-radius:8px;border:1px solid rgba(255,255,255,.14);cursor:pointer}
- .title{padding:12px}
- .modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center}
- .modal.open{display:flex}
- .modal img{max-width:90vw;max-height:85vh}
- .bar{position:fixed;bottom:20px;left:0;right:0;text-align:center}
- .btn{margin:0 6px;padding:8px 12px;border-radius:10px;border:1px solid #8de9e0;background:#12bfb6;color:#002;cursor:pointer}
- @media(max-width:800px){.grid{grid-template-columns:1fr 1fr}}
- @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  :root{--bg:#051f20;--text:#ecf7f5;--muted:#bfe3dd;--accent:#13c2b9;--accent2:#7df0e7;--shadow:0 10px 25px rgba(0,0,0,.25);--radius:16px}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:linear-gradient(180deg,#031212,var(--bg));color:var(--text);
+            font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+  a{color:var(--accent)}
+  .wrap{max-width:1200px;margin:0 auto;padding:20px}
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);background:rgba(8,45,46,.75);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+  .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text)}
+  .logo{width:36px;height:36px;border-radius:9px;background:conic-gradient(from 90deg,var(--accent),var(--accent2),#2dd4bf,var(--accent));box-shadow:var(--shadow)}
+  .nav-links{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:var(--text);text-decoration:none;transition:.2s box-shadow,.2s transform;cursor:pointer}
+  .btn:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(180deg,var(--accent),#0ab3a9);color:#042524;border:none;font-weight:600}
+  .btn.ghost{background:transparent;border-color:rgba(255,255,255,.18)}
+  .panel{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .headline{font-size:clamp(26px,3.6vw,42px);line-height:1.15;margin:0 0 12px}
+  .sub{color:var(--muted);margin:0 0 16px;max-width:68ch}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 14px}
+  .badge{padding:8px 12px;background:#0e4849;border:1px solid rgba(255,255,255,.08);border-radius:999px;font-size:13px;color:var(--muted)}
+  .hero{padding:56px 0 28px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch}
+  .filters{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  .filters label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+  .filters input,.filters select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0a3434;color:var(--text)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+  .card{display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)}
+  .photo{aspect-ratio:16/10;background:#0e5556;display:grid;place-items:center;color:#b7fff6;font-weight:700;letter-spacing:1px;position:relative}
+  .thumbs{display:flex;gap:8px;overflow:auto;padding:10px;background:#093131;border-top:1px solid rgba(255,255,255,.08)}
+  .thumbs img{height:56px;width:auto;border-radius:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer}
+  .card-body{padding:16px 16px 14px}
+  .card h3{margin:0 0 6px;font-size:18px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .tag{font-size:12px;padding:6px 10px;border-radius:999px;background:#0a3434;border:1px solid rgba(255,255,255,.08);color:var(--muted)}
+  .price{margin-top:10px;font-weight:800}
+  .actions{display:flex;gap:10px;margin-top:12px}
+  .notice{padding:14px;border-radius:14px;background:#0a3434;border:1px solid rgba(255,255,255,.12);color:var(--muted);margin-top:12px;display:none}
+  .section{margin:48px 0}
+  .section h2{font-size:24px;margin:0 0 12px}
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .faq details{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;background:#0a3434}
+  footer{margin-top:40px;border-top:1px solid rgba(255,255,255,.08)}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;padding:20px 0 40px}
+  .foot small{color:var(--muted)}
+  /* Modal gallery */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex}
+  .modal-inner{max-width:min(1100px,95vw);max-height:90vh;background:#031818;border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden}
+  .modal img{display:block;max-height:76vh;width:auto;margin:0 auto}
+  .modal-bar{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,.12);background:#082d2e}
+  .modal-actions{display:flex;gap:8px}
+  @media (max-width:1024px){
+    .hero-grid{grid-template-columns:1fr}
+    .filters{grid-template-columns:repeat(3,1fr)}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .faq{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .filters{grid-template-columns:1fr 1fr}
+    .grid{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Amwaj Apartments</h1>
-  <div id="cards" class="grid"></div>
-</div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><div class="logo" aria-hidden="true"></div><b>Amwaj Apartments</b></a>
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#apartments">Апартаменты</a>
+      <a href="#amenities">Удобства</a>
+      <a href="#location">Локация</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn primary" href="#contact">Забронировать</a>
+    </nav>
+  </div>
+</header>
 
-<div id="gallery" class="modal">
-  <img id="gImg" alt="Фото">
-  <div class="bar">
-    <button id="prev" class="btn">←</button>
-    <button id="next" class="btn">→</button>
-    <button id="close" class="btn">Закрыть</button>
+<main id="top" class="wrap">
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="panel">
+        <h1 class="headline">12 частных апартаментов • Amwaj, Nabq Bay</h1>
+        <p class="sub">Корпус <b>20</b> — 6 квартир с 2 спальнями; корпус <b>6</b> — 6 квартир с 1 спальней. Разные этажи, балкон или терраса, гибкая конфигурация кроватей.</p>
+        <div class="badges">
+          <span class="badge">Пляж 250 м</span><span class="badge">Бассейны и акваспорт</span>
+          <span class="badge">24/7 ресепшен</span><span class="badge">Wi‑Fi</span><span class="badge">Nabq Bay</span>
+        </div>
+      </div>
+      <div class="panel" aria-labelledby="filterTitle">
+        <h2 id="filterTitle" style="margin:0 0 12px;">Подобрать апартаменты</h2>
+        <form class="filters" id="filterForm">
+          <div><label for="building">Корпус</label>
+            <select id="building"><option value="">Любой</option><option value="20">Корпус 20 (2 спальни)</option><option value="6">Корпус 6 (1 спальня)</option></select>
+          </div>
+          <div><label for="bedrooms">Спальни</label>
+            <select id="bedrooms"><option value="">Любые</option><option value="1">1 спальня</option><option value="2">2 спальни</option></select>
+          </div>
+          <div><label for="guests">Гостей</label>
+            <select id="guests"><option value="">Любое</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+          </div>
+          <div><label for="outdoor">Балкон/терраса</label>
+            <select id="outdoor"><option value="">Любой</option><option value="balcony">Балкон</option><option value="terrace">Терраса</option></select>
+          </div>
+          <div><label for="floor">Этаж</label>
+            <select id="floor"><option value="">Любой</option><option value="0">Первый/цоколь</option><option value="1">1 этаж</option><option value="2">2 этаж</option></select>
+          </div>
+          <div><label for="maxPrice">Бюджет, $/ночь</label>
+            <select id="maxPrice"><option value="">Без лимита</option><option value="70">до 70</option><option value="90">до 90</option><option value="120">до 120</option><option value="150">до 150</option></select>
+          </div>
+          <div style="display:flex;gap:10px;align-items:end">
+            <button class="btn" type="reset">Сбросить</button>
+            <button class="btn primary" type="button" id="applyFilters">Показать</button>
+          </div>
+        </form>
+        <p class="sub">Фильтр работает локально по параметрам и базовой цене.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="apartments" class="section">
+    <h2>Доступные апартаменты</h2>
+    <p class="sub">Карточки ниже: фото (добавим позже), описание, конфигурация кроватей, этаж, балкон/терраса и цена «от $». Нажмите по превью для галереи.</p>
+    <div class="grid" id="cards"></div>
+  </section>
+
+  <section id="amenities" class="section">
+    <h2>Что включено</h2>
+    <ul class="sub">
+      <li>Собственный пляж Amwaj, понтон, шезлонги</li>
+      <li>2 больших бассейна, детский бассейн, акваспорт</li>
+      <li>Рестораны и бары на территории</li>
+      <li>Охрана и ресепшен 24/7</li>
+      <li>Кондиционер, кухня/мини‑кухня, Wi‑Fi, Smart TV*</li>
+    </ul>
+    <p class="sub">* оборудование и детали могут отличаться по апартаментам.</p>
+  </section>
+
+  <section id="location" class="section">
+    <h2>Локация</h2>
+    <div class="panel">
+      <p>Отель Amwaj — район Nabq Bay, Шарм‑эль‑Шейх. Рядом — Soho Square, аэропорт SSH, магазины и кафе.</p>
+      <p>Открыть в картах: <a href="https://maps.google.com/?q=Amwaj+Sharm+El+Sheikh" target="_blank" rel="noopener">Google Maps</a></p>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <h2>Частые вопросы</h2>
+    <div class="faq">
+      <details><summary>Как забронировать?</summary><p>Выберите апартамент и нажмите «Связаться». Напишите даты, состав гостей и пожелания. Мы подтвердим доступность и цену.</p></details>
+      <details><summary>Правила отмены</summary><p>Гибкие: бесплатная отмена за 7 дней; позже удерживается предоплата первой ночи (можем настроить под ваши правила).</p></details>
+      <details><summary>Скидки за длительное проживание</summary><p>Есть тарифы 14+ и 28+ ночей. Уточняйте при обращении.</p></details>
+      <details><summary>С детьми/животными</summary><p>С детьми — да. Домашние животные — по согласованию в отдельных апартаментах.</p></details>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Связаться для бронирования</h2>
+    <div class="panel">
+      <p class="sub">⏰ Время: 09:00–24:00</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn primary" href="https://wa.me/34673567996" target="_blank" rel="noopener">WhatsApp — Виктор</a>
+        <a class="btn" href="tel:+201096176893">Мистер Шериф: +20 109 617 6893</a>
+        <a class="btn ghost" href="mailto:booking@example.com">booking@example.com</a>
+      </div>
+      <p class="sub" style="margin-top:12px">Языки: Виктор — 🇬🇧 English / 🇪🇸 Español / 🇷🇺 Русский; Шериф — 🇪🇬 العربية.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <strong>Amwaj Apartments</strong>
+      <p class="sub">Частные апартаменты в отеле Amwaj, Nabq Bay, Sharm el Sheikh.</p>
+      <small>© <span id="year"></span> Все права защищены.</small>
+    </div>
+    <div>
+      <small><b>Правила</b></small><br>
+      <small><a href="#faq">Отмена и депозит</a></small><br>
+      <small><a href="#contact">Контакты</a></small>
+    </div>
+    <div>
+      <small><b>Языки</b></small><br>
+      <small>RU (этот файл). EN/IT/AR добавим позже.</small>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal Gallery -->
+<div class="modal" id="gallery" role="dialog" aria-modal="true" aria-label="Галерея">
+  <div class="modal-inner">
+    <div class="modal-bar">
+      <div id="gTitle"></div>
+      <div class="modal-actions">
+        <button class="btn ghost" id="prev">←</button>
+        <button class="btn ghost" id="next">→</button>
+        <button class="btn" id="close">Закрыть</button>
+      </div>
+    </div>
+    <img id="gImg" alt="Фото апартаментов">
   </div>
 </div>
 
 <script>
-var APARTMENTS = [
-  {corp:'20', id:'201', bedrooms:2, photos:[]},
-  {corp:'20', id:'202', bedrooms:2, photos:['./img/202/1.jpeg','./img/202/2.jpeg','./img/202/3.jpeg','./img/202/4.jpeg','./img/202/5.jpeg','./img/202/6.jpeg','./img/202/7.jpeg','./img/202/8.jpeg','./img/202/9.jpeg','./img/202/10.jpeg','./img/202/11.jpeg','./img/202/12.jpeg']},
-  {corp:'20', id:'203', bedrooms:2, photos:[]},
-  {corp:'20', id:'204', bedrooms:2, photos:[]},
-  {corp:'20', id:'205', bedrooms:2, photos:[]},
-  {corp:'20', id:'206', bedrooms:2, photos:[]},
-  {corp:'6',  id:'601', bedrooms:1, photos:['./img/601/1.jpeg','./img/601/2.jpeg','./img/601/3.jpeg','./img/601/4.jpeg','./img/601/5.jpeg','./img/601/6.jpeg','./img/601/7.jpeg','./img/601/8.jpeg','./img/601/9.jpeg','./img/601/10.jpeg','./img/601/11.jpeg','./img/601/12.jpeg']},
-  {corp:'6',  id:'602', bedrooms:1, photos:['./img/602/1.jpeg','./img/602/2.jpeg','./img/602/3.jpeg','./img/602/4.jpeg','./img/602/5.jpeg','./img/602/6.jpeg','./img/602/7.jpeg','./img/602/8.jpeg','./img/602/9.jpeg','./img/602/10.jpeg','./img/602/11.jpeg','./img/602/12.jpeg']},
-  {corp:'6',  id:'603', bedrooms:1, photos:['./img/603/1.jpeg','./img/603/2.jpeg','./img/603/3.jpeg','./img/603/4.jpeg','./img/603/5.jpeg','./img/603/6.jpeg','./img/603/7.jpeg','./img/603/8.jpeg','./img/603/9.jpeg','./img/603/10.jpeg','./img/603/11.jpeg','./img/603/12.jpeg']},
-  {corp:'6',  id:'605', bedrooms:1, photos:[]},
-  {corp:'6',  id:'606', bedrooms:1, photos:[]},
-  {corp:'6',  id:'609', bedrooms:1, photos:[]}
-];
+  // === ДАННЫЕ из твоей таблицы ===
+  const APARTMENTS = [
+    {corp:'20', id:'201', bedrooms:2, floor:0, outdoor:'terrace', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:['https://picsum.photos/id/1018/800/500','https://picsum.photos/id/1015/800/500','https://picsum.photos/id/1016/800/500']},
+    {corp:'20', id:'202', bedrooms:2, floor:0, outdoor:'terrace', beds:'2 single + 2 king + 1 sofa', guests:6, size:90, price:120, desc:'2 спальни • 90 м² • до 6 гостей', badges:[], photos:['./img/202/1.jpeg','./img/202/2.jpeg','./img/202/3.jpeg','./img/202/4.jpeg','./img/202/5.jpeg','./img/202/6.jpeg','./img/202/7.jpeg','./img/202/8.jpeg','./img/202/9.jpeg','./img/202/10.jpeg','./img/202/11.jpeg','./img/202/12.jpeg']},
+    {corp:'20', id:'203', bedrooms:2, floor:1, outdoor:'balcony', beds:'2 single + 1 double + 1 king + 1 sofa', guests:6, size:90, price:120, desc:'2 спальни • 90 м² • до 6 гостей', badges:[], photos:[]},
+    {corp:'20', id:'204', bedrooms:2, floor:1, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
+    {corp:'20', id:'205', bedrooms:2, floor:2, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
+    {corp:'20', id:'206', bedrooms:2, floor:2, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:120, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
+    {corp:'6', id:'601', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 king + 1 sofa', guests:3, size:55, price:90, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos:['./img/601/1.jpeg','./img/601/2.jpeg','./img/601/3.jpeg','./img/601/4.jpeg','./img/601/5.jpeg','./img/601/6.jpeg','./img/601/7.jpeg','./img/601/8.jpeg','./img/601/9.jpeg','./img/601/10.jpeg','./img/601/11.jpeg','./img/601/12.jpeg']},
+    {corp:'6', id:'602', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 single + 2 double', guests:5, size:55, price:100, desc:'1 спальня • 55 м² • до 5 гостей', badges:[], photos:['./img/602/1.jpeg','./img/602/2.jpeg','./img/602/3.jpeg','./img/602/4.jpeg','./img/602/5.jpeg','./img/602/6.jpeg','./img/602/7.jpeg','./img/602/8.jpeg','./img/602/9.jpeg','./img/602/10.jpeg','./img/602/11.jpeg','./img/602/12.jpeg']},
+    {corp:'6', id:'603', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 king + 1 sofa', guests:3, size:55, price:80, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos:['./img/603/1.jpeg','./img/603/2.jpeg','./img/603/3.jpeg','./img/603/4.jpeg','./img/603/5.jpeg','./img/603/6.jpeg','./img/603/7.jpeg','./img/603/8.jpeg','./img/603/9.jpeg','./img/603/10.jpeg','./img/603/11.jpeg','./img/603/12.jpeg']},
+    {corp:'6', id:'605', bedrooms:1, floor:1, outdoor:'balcony', beds:'1 double', guests:2, size:55, price:70, desc:'1 спальня • 55 м² • до 2 гостей', badges:[], photos:[]},
+    {corp:'6', id:'606', bedrooms:1, floor:1, outdoor:'balcony', beds:'1 double', guests:3, size:55, price:90, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos:[]},
+    {corp:'6', id:'609', bedrooms:1, floor:2, outdoor:'balcony', beds:'1 single + 1 double', guests:2, size:55, price:70, desc:'1 спальня • 55 м² • до 2 гостей', badges:[], photos:[]},
+  ];
 
-function placeholder(text){
-  return "data:image/svg+xml;utf8," +
-    "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"1200\" height=\"750\">" +
-    "<rect width=\"100%\" height=\"100%\" fill=\"#0e5556\"/>" +
-    "<text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" " +
-    "font-family=\"Segoe UI,Roboto,Arial\" font-size=\"56\" fill=\"#b7fff6\" opacity=\".85\">" +
-    text + "</text></svg>";
-}
+  // === Утилиты ===
+  function placeholderSVG(text){
+    const svg = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='750'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%2313c2b9'/><stop offset='1' stop-color='%237df0e7'/></linearGradient></defs><rect width='100%' height='100%' fill='url(#g)'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,Segoe UI,Roboto' font-size='56' fill='#042524' opacity='.85'>${text}</text></svg>`);
+    return `data:image/svg+xml;charset=utf-8,${svg}`;
+  }
 
-var cards = document.getElementById('cards');
-APARTMENTS.forEach(function(a){
-  var main = (a.photos && a.photos.length) ? a.photos[0] : placeholder(a.corp + "-" + a.id);
-  var card = document.createElement('div');
-  card.className = 'card';
-  card.innerHTML = '<div class="photo"><img src="'+main+'" alt="" style="width:100%;height:100%;object-fit:cover"></div>' +
-                   '<div class="thumbs">' +
-                   (a.photos && a.photos.length ? a.photos.map(function(p,i){return '<img src="'+p+'" data-corp="'+a.corp+'" data-id="'+a.id+'" data-idx="'+i+'">'}).join('') : '') +
-                   '</div>' +
-                   '<div class="title"><b>Корпус '+a.corp+', апартамент '+a.id+'</b></div>';
-  cards.appendChild(card);
-});
+  // === Рендер карточек ===
+  const cardsEl = document.getElementById('cards');
+  function renderCards(list){
+    cardsEl.innerHTML = '';
+    list.forEach(a => {
+      const title = `Корпус ${a.corp}, апартамент ${a.id} • ${a.bedrooms===2?'2 спальни':'1 спальня'} • ${a.outdoor==='balcony'?'Балкон':a.outdoor==='terrace'?'Терраса':'Без балкона'}`;
+      const mainImg = (a.photos && a.photos[0]) ? a.photos[0] : placeholderSVG(`${a.corp}-${a.id}`);
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.setAttribute('data-corp', a.corp);
+      el.setAttribute('data-bedrooms', a.bedrooms);
+      el.setAttribute('data-floor', a.floor);
+      el.setAttribute('data-outdoor', a.outdoor);
+      el.setAttribute('data-price', a.price);
+      el.setAttribute('data-guests', a.guests);
+      el.innerHTML = `
+        <div class="photo"><img alt="${title}" src="${mainImg}" style="width:100%;height:100%;object-fit:cover"/></div>
+        ${(a.photos && a.photos.length > 0) ? `<div class="thumbs">${a.photos.map((p,i)=>`<img alt="thumb ${i+1}" src="${p||placeholderSVG(a.id)}" data-corp="${a.corp}" data-id="${a.id}" data-idx="${i}">`).join('')}</div>` : `<div class="thumbs"><img alt="placeholder" src="${placeholderSVG(a.id)}" data-corp="${a.corp}" data-id="${a.id}" data-idx="0"></div>`}
+        <div class="card-body">
+          <h3>${title}</h3>
+          <p>${a.desc||''}</p>
+          <div class="tags">
+            <span class="tag">Корпус ${a.corp}</span>
+            <span class="tag">${a.size||'?'} м²</span>
+            <span class="tag">до ${a.guests} гостей</span>
+            <span class="tag">Этаж: ${a.floor}</span>
+            <span class="tag">Кровати: ${a.beds||'—'}</span>
+            ${(a.badges||[]).map(b=>`<span class="tag">${b}</span>`).join('')}
+          </div>
+          <div class="price">от $${a.price} / ночь</div>
+          <div class="actions">
+            <a class="btn" href="#contact">Связаться</a>
+            <button class="btn ghost" onclick="toggleDetails('${a.corp}','${a.id}')">Детали</button>
+          </div>
+          <div class="notice" id="d-${a.corp}-${a.id}">
+            <b>Детали:</b>
+            <ul style="margin:8px 0 0 18px">
+              <li>Планировка: ${a.bedrooms===2?'2 спальни + гостиная':'1 спальня + гостиная'}, американская кухня</li>
+              <li>Балкон/терраса: ${a.outdoor||'—'}</li>
+              <li>Этаж: ${a.floor}</li>
+              <li>Кровати: ${a.beds||'—'}</li>
+              <li>Оснащение: кухня, кондиционер, Smart TV, Wi‑Fi*</li>
+            </ul>
+            <p style="margin:8px 0 0">Добавьте URL ваших фото в <code>APARTMENTS[].photos</code>, чтобы показать реальные снимки.</p>
+          </div>
+        </div>
+      `;
+      cardsEl.appendChild(el);
+    });
+    cardsEl.querySelectorAll('.thumbs img').forEach(img=>{
+      img.addEventListener('click', (e)=> openGallery(e.target.getAttribute('data-corp'), e.target.getAttribute('data-id'), +e.target.getAttribute('data-idx')));
+    });
+  }
+  function toggleDetails(corp,id){
+    const el = document.getElementById('d-'+corp+'-'+id);
+    el.style.display = el.style.display==='none' || el.style.display==='' ? 'block' : 'none';
+  }
 
-var modal = document.getElementById('gallery');
-var gImg = document.getElementById('gImg');
-var cur = {list:[], idx:0, name:''};
-
-function openGallery(corp,id,idx){
-  var a = APARTMENTS.find(function(x){return x.corp===corp && x.id===id;});
-  if(!a) return;
-  cur.list = a.photos && a.photos.length ? a.photos : [placeholder(corp+'-'+id)];
-  cur.idx = Math.max(0, Math.min(idx||0, cur.list.length-1));
-  cur.name = 'Корпус '+corp+', апартамент '+id;
-  gImg.src = cur.list[cur.idx];
-  modal.classList.add('open');
-}
-
-document.getElementById('prev').onclick = function(){ if(!cur.list.length) return; cur.idx=(cur.idx-1+cur.list.length)%cur.list.length; gImg.src=cur.list[cur.idx]; };
-document.getElementById('next').onclick = function(){ if(!cur.list.length) return; cur.idx=(cur.idx+1)%cur.list.length; gImg.src=cur.list[cur.idx]; };
-document.getElementById('close').onclick = function(){ modal.classList.remove('open'); };
-modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.remove('open'); });
-
-document.querySelectorAll('.thumbs img').forEach(function(img){
-  img.addEventListener('click', function(e){
-    openGallery(e.target.getAttribute('data-corp'), e.target.getAttribute('data-id'), +e.target.getAttribute('data-idx'));
+  // === Фильтр ===
+  const applyBtn = document.getElementById('applyFilters');
+  applyBtn.addEventListener('click', () => {
+    const corp = document.getElementById('building').value;
+    const br   = document.getElementById('bedrooms').value;
+    const g    = document.getElementById('guests').value;
+    const out  = document.getElementById('outdoor').value;
+    const fl   = document.getElementById('floor').value;
+    const p    = document.getElementById('maxPrice').value;
+    const filtered = APARTMENTS.filter(a => {
+      const okCorp = corp ? a.corp===corp : true;
+      const okBr   = br ? a.bedrooms===+br : true;
+      const okG    = g  ? a.guests>=+g : true;
+      const okOut  = out? a.outdoor===out : true;
+      const okFl   = fl ? (String(a.floor)===fl) : true;
+      const okP    = p  ? a.price<=+p : true;
+      return okCorp && okBr && okG && okOut && okFl && okP;
+    });
+    renderCards(filtered);
+    window.location.hash = '#apartments';
   });
-});
+
+  // === Галерея ===
+  const modal = document.getElementById('gallery');
+  const gImg = document.getElementById('gImg');
+  const gTitle = document.getElementById('gTitle');
+  let gIds = []; let gIdx = 0; let gName = '';
+  function openGallery(corp, id, idx=0){
+    const a = APARTMENTS.find(x=>x.corp===corp && x.id===id);
+    if(!a) return;
+    const title = `Корпус ${a.corp}, апартамент ${a.id}`;
+    gIds = (a.photos && a.photos.filter(Boolean).length ? a.photos : [placeholderSVG(`${a.corp}-${a.id}`)]);
+    gIdx = Math.max(0, Math.min(idx, gIds.length-1));
+    gName = title;
+    gTitle.textContent = gName + ' — ' + (gIdx+1) + '/' + gIds.length;
+    gImg.src = gIds[gIdx];
+    modal.classList.add('open');
+  }
+  document.getElementById('prev').onclick = ()=>{ if(!gIds.length) return; gIdx=(gIdx-1+gIds.length)%gIds.length; gTitle.textContent=gName+' — '+(gIdx+1)+'/'+gIds.length; gImg.src=gIds[gIdx]; };
+  document.getElementById('next').onclick = ()=>{ if(!gIds.length) return; gIdx=(gIdx+1)%gIds.length; gTitle.textContent=gName+' — '+(gIdx+1)+'/'+gIds.length; gImg.src=gIds[gIdx]; };
+  document.getElementById('close').onclick = ()=> modal.classList.remove('open');
+  document.getElementById('gallery').addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+
+  // Год в футере
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Первичная отрисовка
+  renderCards(APARTMENTS);
 </script>
 </body>
 </html>
