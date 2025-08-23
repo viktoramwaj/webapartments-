@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Amwaj Apartments — Корпус 20 (2BR) и Корпус 6 (1BR)</title>
 <meta name="description" content="12 апартаментов в Amwaj, Nabq Bay: 6 двухспальных (корпус 20) и 6 однокомнатных (корпус 6). Прямое бронирование.">
 <meta name="format-detection" content="telephone=no">
@@ -19,7 +19,7 @@
   .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text)}
   .logo{width:36px;height:36px;border-radius:9px;background:conic-gradient(from 90deg,var(--accent),var(--accent2),#2dd4bf,var(--accent));box-shadow:var(--shadow)}
   .nav-links{display:flex;gap:14px;flex-wrap:wrap}
-  .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:var(--text);text-decoration:none;transition:.2s box-shadow,.2s transform;cursor:pointer}
+  .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:#ecf7f5;text-decoration:none;transition:.2s box-shadow,.2s transform;cursor:pointer}
   .btn:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
   .btn.primary{background:linear-gradient(180deg,var(--accent),#0ab3a9);color:#042524;border:none;font-weight:600}
   .btn.ghost{background:transparent;border-color:rgba(255,255,255,.18)}
@@ -32,7 +32,7 @@
   .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch}
   .filters{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
   .filters label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
-  .filters input,.filters select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0a3434;color:var(--text)}
+  .filters input,.filters select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0a3434;color:#ecf7f5}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
   .card{display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)}
   .photo{aspect-ratio:16/10;background:#0e5556;display:grid;place-items:center;color:#b7fff6;font-weight:700;letter-spacing:1px;position:relative}
@@ -53,7 +53,6 @@
   footer{margin-top:40px;border-top:1px solid rgba(255,255,255,.08)}
   .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;padding:20px 0 40px}
   .foot small{color:var(--muted)}
-  /* Modal gallery */
   .modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px}
   .modal.open{display:flex}
   .modal-inner{max-width:min(1100px,95vw);max-height:90vh;background:#031818;border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden}
@@ -100,30 +99,7 @@
       </div>
       <div class="panel" aria-labelledby="filterTitle">
         <h2 id="filterTitle" style="margin:0 0 12px;">Подобрать апартаменты</h2>
-        <form class="filters" id="filterForm">
-          <div><label for="building">Корпус</label>
-            <select id="building"><option value="">Любой</option><option value="20">Корпус 20 (2 спальни)</option><option value="6">Корпус 6 (1 спальня)</option></select>
-          </div>
-          <div><label for="bedrooms">Спальни</label>
-            <select id="bedrooms"><option value="">Любые</option><option value="1">1 спальня</option><option value="2">2 спальни</option></select>
-          </div>
-          <div><label for="guests">Гостей</label>
-            <select id="guests"><option value="">Любое</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
-          </div>
-          <div><label for="outdoor">Балкон/терраса</label>
-            <select id="outdoor"><option value="">Любой</option><option value="balcony">Балкон</option><option value="terrace">Терраса</option></select>
-          </div>
-          <div><label for="floor">Этаж</label>
-            <select id="floor"><option value="">Любой</option><option value="0">Первый/цоколь</option><option value="1">1 этаж</option><option value="2">2 этаж</option></select>
-          </div>
-          <div><label for="maxPrice">Бюджет, $/ночь</label>
-            <select id="maxPrice"><option value="">Без лимита</option><option value="70">до 70</option><option value="90">до 90</option><option value="120">до 120</option><option value="150">до 150</option></select>
-          </div>
-          <div style="display:flex;gap:10px;align-items:end">
-            <button class="btn" type="reset">Сбросить</button>
-            <button class="btn primary" type="button" id="applyFilters">Показать</button>
-          </div>
-        </form>
+        <div id="filters-root"></div>
         <p class="sub">Фильтр работает локально по параметрам и базовой цене.</p>
       </div>
     </div>
@@ -131,8 +107,8 @@
 
   <section id="apartments" class="section">
     <h2>Доступные апартаменты</h2>
-    <p class="sub">Карточки ниже: фото (добавим позже), описание, конфигурация кроватей, этаж, балкон/терраса и цена «от $». Нажмите по превью для галереи.</p>
-    <div class="grid" id="cards"></div>
+    <p class="sub">Карточки ниже: фото, описание, конфигурация кроватей, этаж, балкон/терраса и цена «от $». Нажмите по превью для галереи.</p>
+    <div class="grid" id="cards-root"></div>
   </section>
 
   <section id="amenities" class="section">
@@ -198,150 +174,327 @@
   </div>
 </footer>
 
-<!-- Modal Gallery -->
-<div class="modal" id="gallery" role="dialog" aria-modal="true" aria-label="Галерея">
-  <div class="modal-inner">
-    <div class="modal-bar">
-      <div id="gTitle"></div>
-      <div class="modal-actions">
-        <button class="btn ghost" id="prev">←</button>
-        <button class="btn ghost" id="next">→</button>
-        <button class="btn" id="close">Закрыть</button>
-      </div>
-    </div>
-    <img id="gImg" alt="Фото апартаментов">
-  </div>
-</div>
+<div id="gallery-root"></div>
 
-<script>
-  // === ДАННЫЕ из твоей таблицы ===
-  const APARTMENTS = [
-    {corp:'20', id:'201', bedrooms:2, floor:0, outdoor:'terrace', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos: []},
-    {corp:'20', id:'202', bedrooms:2, floor:0, outdoor:'terrace', beds:'2 single + 2 king + 1 sofa', guests:6, size:90, price:120, desc:'2 спальни • 90 м² • до 6 гостей', badges:[], photos:[]},
-    {corp:'20', id:'203', bedrooms:2, floor:1, outdoor:'balcony', beds:'2 single + 1 double + 1 king + 1 sofa', guests:6, size:90, price:120, desc:'2 спальни • 90 м² • до 6 гостей', badges:[], photos:[]},
-    {corp:'20', id:'204', bedrooms:2, floor:1, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
-    {corp:'20', id:'205', bedrooms:2, floor:2, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
-    {corp:'20', id:'206', bedrooms:2, floor:2, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:120, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
-    {corp:'6', id:'601', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 king + 1 sofa', guests:3, size:55, price:90, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos: []},
-    {corp:'6', id:'602', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 single + 2 double', guests:5, size:55, price:100, desc:'1 спальня • 55 м² • до 5 гостей', badges:[], photos:[]},
-    {corp:'6', id:'603', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 king + 1 sofa', guests:3, size:55, price:80, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos: ['./images/IMG_6099.jpeg','./images/IMG_6100.jpeg','./images/IMG_6104.jpeg','./images/IMG_6105.jpeg','./images/IMG_6108.jpeg','./images/IMG_6111.jpeg','./images/IMG_6112.jpeg','./images/IMG_4801.jpeg']},
-    {corp:'6', id:'605', bedrooms:1, floor:1, outdoor:'balcony', beds:'1 double', guests:2, size:55, price:70, desc:'1 спальня • 55 м² • до 2 гостей', badges:[], photos:[]},
-    {corp:'6', id:'606', bedrooms:1, floor:1, outdoor:'balcony', beds:'1 double', guests:3, size:55, price:90, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos:[]},
-    {corp:'6', id:'609', bedrooms:1, floor:2, outdoor:'balcony', beds:'1 single + 1 double', guests:2, size:55, price:70, desc:'1 спальня • 55 м² • до 2 гостей', badges:[], photos:[]},
-  ];
+<!-- React 18 UMD + Babel -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  // === Утилиты ===
-  function placeholderSVG(text){
-    const svg = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='750'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%2313c2b9'/><stop offset='1' stop-color='%237df0e7'/></linearGradient></defs><rect width='100%' height='100%' fill='url(#g)'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,Segoe UI,Roboto' font-size='56' fill='#042524' opacity='.85'>${text}</text></svg>`);
-    return `data:image/svg+xml;charset=utf-8,${svg}`;
-  }
+<script type="text/babel">
+// ======= ДАННЫЕ =======
+const APARTMENTS = [
+  {corp:'20', id:'201', bedrooms:2, floor:0, outdoor:'terrace', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
+  {corp:'20', id:'202', bedrooms:2, floor:0, outdoor:'terrace', beds:'2 single + 2 king + 1 sofa', guests:6, size:90, price:120, desc:'2 спальни • 90 м² • до 6 гостей', badges:[], photos:[], dir:'202'},
+  {corp:'20', id:'203', bedrooms:2, floor:1, outdoor:'balcony', beds:'2 single + 1 double + 1 king + 1 sofa', guests:6, size:90, price:120, desc:'2 спальни • 90 м² • до 6 гостей', badges:[], photos:[]},
+  {corp:'20', id:'204', bedrooms:2, floor:1, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
+  {corp:'20', id:'205', bedrooms:2, floor:2, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:90, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
+  {corp:'20', id:'206', bedrooms:2, floor:2, outdoor:'balcony', beds:'2 single + 1 king + 1 sofa', guests:4, size:90, price:120, desc:'2 спальни • 90 м² • до 4 гостей', badges:[], photos:[]},
+  {corp:'6', id:'601', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 king + 1 sofa', guests:3, size:55, price:90, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos:[], dir:'601'},
+  {corp:'6', id:'602', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 single + 2 double', guests:5, size:55, price:100, desc:'1 спальня • 55 м² • до 5 гостей', badges:[], photos:[], dir:'602'},
+  {corp:'6', id:'603', bedrooms:1, floor:0, outdoor:'terrace', beds:'1 king + 1 sofa', guests:3, size:55, price:80, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos:[], dir:'603'},
+  {corp:'6', id:'605', bedrooms:1, floor:1, outdoor:'balcony', beds:'1 double', guests:2, size:55, price:70, desc:'1 спальня • 55 м² • до 2 гостей', badges:[], photos:[]},
+  {corp:'6', id:'606', bedrooms:1, floor:1, outdoor:'balcony', beds:'1 double', guests:3, size:55, price:90, desc:'1 спальня • 55 м² • до 3 гостей', badges:[], photos:[]},
+  {corp:'6', id:'609', bedrooms:1, floor:2, outdoor:'balcony', beds:'1 single + 1 double', guests:2, size:55, price:70, desc:'1 спальня • 55 м² • до 2 гостей', badges:[], photos:[]},
+];
 
-  // === Рендер карточек ===
-  const cardsEl = document.getElementById('cards');
-  function renderCards(list){
-    cardsEl.innerHTML = '';
-    list.forEach(a => {
-      const title = `Корпус ${a.corp}, апартамент ${a.id} • ${a.bedrooms===2?'2 спальни':'1 спальня'} • ${a.outdoor==='balcony'?'Балкон':a.outdoor==='terrace'?'Терраса':'Без балкона'}`;
-      const mainImg = (a.photos && a.photos[0]) ? a.photos[0] : placeholderSVG(`${a.corp}-${a.id}`);
-      const el = document.createElement('article');
-      el.className = 'card';
-      el.setAttribute('data-corp', a.corp);
-      el.setAttribute('data-bedrooms', a.bedrooms);
-      el.setAttribute('data-floor', a.floor);
-      el.setAttribute('data-outdoor', a.outdoor);
-      el.setAttribute('data-price', a.price);
-      el.setAttribute('data-guests', a.guests);
-      el.innerHTML = `
-        <div class="photo"><img alt="${title}" src="${mainImg}" style="width:100%;height:100%;object-fit:cover"/></div>
-        ${(a.photos && a.photos.length > 0) ? `<div class="thumbs">${a.photos.map((p,i)=>`<img alt="thumb ${i+1}" src="${p||placeholderSVG(a.id)}" data-corp="${a.corp}" data-id="${a.id}" data-idx="${i}">`).join('')}</div>` : `<div class="thumbs"><img alt="placeholder" src="${placeholderSVG(a.id)}" data-corp="${a.corp}" data-id="${a.id}" data-idx="0"></div>`}
-        <div class="card-body">
-          <h3>${title}</h3>
-          <p>${a.desc||''}</p>
-          <div class="tags">
-            <span class="tag">Корпус ${a.corp}</span>
-            <span class="tag">${a.size||'?'} м²</span>
-            <span class="tag">до ${a.guests} гостей</span>
-            <span class="tag">Этаж: ${a.floor}</span>
-            <span class="tag">Кровати: ${a.beds||'—'}</span>
-            ${(a.badges||[]).map(b=>`<span class="tag">${b}</span>`).join('')}
-          </div>
-          <div class="price">от $${a.price} / ночь</div>
-          <div class="actions">
-            <a class="btn" href="#contact">Связаться</a>
-            <button class="btn ghost" onclick="toggleDetails('${a.corp}','${a.id}')">Детали</button>
-          </div>
-          <div class="notice" id="d-${a.corp}-${a.id}">
-            <b>Детали:</b>
-            <ul style="margin:8px 0 0 18px">
-              <li>Планировка: ${a.bedrooms===2?'2 спальни + гостиная':'1 спальня + гостиная'}, американская кухня</li>
-              <li>Балкон/терраса: ${a.outdoor||'—'}</li>
-              <li>Этаж: ${a.floor}</li>
-              <li>Кровати: ${a.beds||'—'}</li>
-              <li>Оснащение: кухня, кондиционер, Smart TV, Wi‑Fi*</li>
-            </ul>
-            <p style="margin:8px 0 0">Добавьте URL ваших фото в <code>APARTMENTS[].photos</code>, чтобы показать реальные снимки.</p>
+// ======= Утилиты =======
+const PHOTOS_BASE = 'photos'; // photos/<id>/1.jpeg, 2.jpeg, ...
+const MAX_PHOTOS = 24;
+
+function buildDirList(a, max = MAX_PHOTOS){
+  if(!a.dir) return [];
+  const base = `${PHOTOS_BASE}/${a.dir}`;
+  return Array.from({length:max}, (_,i)=> `${base}/${i+1}.jpeg`);
+}
+function listPhotos(a){
+  const fromData = (a.photos || []).filter(Boolean);
+  return fromData.length ? fromData : buildDirList(a);
+}
+function placeholderSVG(text){
+  const svg = encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='750'>
+      <defs><linearGradient id='g' x1='0' x2='1'>
+        <stop offset='0' stop-color='#13c2b9'/><stop offset='1' stop-color='#7df0e7'/>
+      </linearGradient></defs>
+      <rect width='100%' height='100%' fill='url(#g)'/>
+      <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'
+        font-family='system-ui,Segoe UI,Roboto' font-size='56' fill='#042524' opacity='.85'>${text}</text>
+    </svg>`
+  );
+  return `data:image/svg+xml;charset=utf-8,${svg}`;
+}
+
+function titleOf(a){
+  return `Корпус ${a.corp}, апартамент ${a.id} • ${a.bedrooms===2?'2 спальни':'1 спальня'} • ${a.outdoor==='balcony'?'Балкон':a.outdoor==='terrace'?'Терраса':'Без балкона'}`;
+}
+
+// ======= Галерея (портал) =======
+function GalleryModal({open, images, index, title, onClose, onPrev, onNext}){
+  React.useEffect(()=>{
+    function onKey(e){
+      if(!open) return;
+      if(e.key === 'Escape') onClose();
+      if(e.key === 'ArrowLeft') onPrev();
+      if(e.key === 'ArrowRight') onNext();
+    }
+    window.addEventListener('keydown', onKey);
+    return ()=> window.removeEventListener('keydown', onKey);
+  }, [open, onClose, onPrev, onNext]);
+
+  if(!open) return null;
+  return ReactDOM.createPortal(
+    <div className="modal open" onClick={(e)=>{ if(e.target.classList.contains('modal')) onClose(); }}>
+      <div className="modal-inner">
+        <div className="modal-bar">
+          <div id="gTitle">{title} — {index+1}/{images.length}</div>
+          <div className="modal-actions">
+            <button className="btn ghost" onClick={onPrev}>←</button>
+            <button className="btn ghost" onClick={onNext}>→</button>
+            <button className="btn" onClick={onClose}>Закрыть</button>
           </div>
         </div>
-      `;
-      cardsEl.appendChild(el);
-    });
-    cardsEl.querySelectorAll('.thumbs img').forEach(img=>{
-      img.addEventListener('click', (e)=> openGallery(e.target.getAttribute('data-corp'), e.target.getAttribute('data-id'), +e.target.getAttribute('data-idx')));
-    });
+        <img id="gImg" alt="Фото апартаментов"
+             src={images[index] || placeholderSVG('—')}
+             onError={(e)=>{ e.currentTarget.src = placeholderSVG('—'); }} />
+      </div>
+    </div>,
+    document.getElementById('gallery-root')
+  );
+}
+
+// ======= Карточка =======
+function Card({a, onThumbClick}){
+  const ph = listPhotos(a);
+  const main = ph[0] || placeholderSVG(`${a.corp}-${a.id}`);
+  return (
+    <article className="card" data-corp={a.corp} data-bedrooms={a.bedrooms}
+             data-floor={a.floor} data-outdoor={a.outdoor} data-price={a.price} data-guests={a.guests}>
+      <div className="photo">
+        <img alt={titleOf(a)} src={main} style={{width:'100%',height:'100%',objectFit:'cover'}}
+             onError={(e)=>{ e.currentTarget.src = placeholderSVG(`${a.corp}-${a.id}`); }} />
+      </div>
+      {ph.length ? (
+        <div className="thumbs">
+          {ph.map((p,i)=>(
+            <img key={i} alt={`thumb ${i+1}`} src={p}
+                 data-idx={i}
+                 onClick={()=> onThumbClick(a, i)}
+                 onError={(e)=>{ e.currentTarget.style.display='none'; }} />
+          ))}
+        </div>
+      ) : (
+        <div className="thumbs">
+          <img alt="placeholder" src={placeholderSVG(a.id)} onClick={()=> onThumbClick(a, 0)} />
+        </div>
+      )}
+      <div className="card-body">
+        <h3>{titleOf(a)}</h3>
+        <p>{a.desc || ''}</p>
+        <div className="tags">
+          <span className="tag">Корпус {a.corp}</span>
+          <span className="tag">{a.size || '?'} м²</span>
+          <span className="tag">до {a.guests} гостей</span>
+          <span className="tag">Этаж: {a.floor}</span>
+          <span className="tag">Кровати: {a.beds || '—'}</span>
+          {(a.badges||[]).map((b,idx)=> <span key={idx} className="tag">{b}</span>)}
+        </div>
+        <div className="price">от ${a.price} / ночь</div>
+        <div className="actions">
+          <a className="btn" href="#contact">Связаться</a>
+          <button className="btn ghost" onClick={(e)=>{
+            const el = e.currentTarget.closest('.card').querySelector('.notice');
+            if(el) el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+          }}>Детали</button>
+        </div>
+        <div className="notice" id={`d-${a.corp}-${a.id}`}>
+          <b>Детали:</b>
+          <ul style={{margin:'8px 0 0 18px'}}>
+            <li>Планировка: {a.bedrooms===2?'2 спальни + гостиная':'1 спальня + гостиная'}, американская кухня</li>
+            <li>Балкон/терраса: {a.outdoor || '—'}</li>
+            <li>Этаж: {a.floor}</li>
+            <li>Кровати: {a.beds || '—'}</li>
+            <li>Оснащение: кухня, кондиционер, Smart TV, Wi‑Fi*</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+// ======= Фильтры =======
+function Filters({onApply}){
+  const [building, setBuilding] = React.useState('');
+  const [bedrooms, setBedrooms] = React.useState('');
+  const [guests, setGuests] = React.useState('');
+  const [outdoor, setOutdoor] = React.useState('');
+  const [floor, setFloor] = React.useState('');
+  const [maxPrice, setMaxPrice] = React.useState('');
+
+  function reset(){
+    setBuilding(''); setBedrooms(''); setGuests(''); setOutdoor(''); setFloor(''); setMaxPrice('');
+    onApply({}); // покажем все
   }
-  function toggleDetails(corp,id){
-    const el = document.getElementById('d-'+corp+'-'+id);
-    el.style.display = el.style.display==='none' || el.style.display==='' ? 'block' : 'none';
+  function apply(){
+    onApply({building, bedrooms, guests, outdoor, floor, maxPrice});
+    location.hash = '#apartments';
   }
 
-  // === Фильтр ===
-  const applyBtn = document.getElementById('applyFilters');
-  applyBtn.addEventListener('click', () => {
-    const corp = document.getElementById('building').value;
-    const br   = document.getElementById('bedrooms').value;
-    const g    = document.getElementById('guests').value;
-    const out  = document.getElementById('outdoor').value;
-    const fl   = document.getElementById('floor').value;
-    const p    = document.getElementById('maxPrice').value;
-    const filtered = APARTMENTS.filter(a => {
-      const okCorp = corp ? a.corp===corp : true;
-      const okBr   = br ? a.bedrooms===+br : true;
-      const okG    = g  ? a.guests>=+g : true;
-      const okOut  = out? a.outdoor===out : true;
-      const okFl   = fl ? (String(a.floor)===fl) : true;
-      const okP    = p  ? a.price<=+p : true;
+  return (
+    <form className="filters" onSubmit={(e)=> e.preventDefault()}>
+      <div><label htmlFor="building">Корпус</label>
+        <select id="building" value={building} onChange={(e)=>setBuilding(e.target.value)}>
+          <option value="">Любой</option>
+          <option value="20">Корпус 20 (2 спальни)</option>
+          <option value="6">Корпус 6 (1 спальня)</option>
+        </select>
+      </div>
+      <div><label htmlFor="bedrooms">Спальни</label>
+        <select id="bedrooms" value={bedrooms} onChange={(e)=>setBedrooms(e.target.value)}>
+          <option value="">Любые</option>
+          <option value="1">1 спальня</option>
+          <option value="2">2 спальни</option>
+        </select>
+      </div>
+      <div><label htmlFor="guests">Гостей</label>
+        <select id="guests" value={guests} onChange={(e)=>setGuests(e.target.value)}>
+          <option value="">Любое</option>
+          {[1,2,3,4,5,6,7,8].map(n=><option key={n} value={n}>{n}</option>)}
+        </select>
+      </div>
+      <div><label htmlFor="outdoor">Балкон/терраса</label>
+        <select id="outdoor" value={outdoor} onChange={(e)=>setOutdoor(e.target.value)}>
+          <option value="">Любой</option>
+          <option value="balcony">Балкон</option>
+          <option value="terrace">Терраса</option>
+        </select>
+      </div>
+      <div><label htmlFor="floor">Этаж</label>
+        <select id="floor" value={floor} onChange={(e)=>setFloor(e.target.value)}>
+          <option value="">Любой</option>
+          <option value="0">Первый/цоколь</option>
+          <option value="1">1 этаж</option>
+          <option value="2">2 этаж</option>
+        </select>
+      </div>
+      <div><label htmlFor="maxPrice">Бюджет, $/ночь</label>
+        <select id="maxPrice" value={maxPrice} onChange={(e)=>setMaxPrice(e.target.value)}>
+          <option value="">Без лимита</option>
+          <option value="70">до 70</option>
+          <option value="90">до 90</option>
+          <option value="120">до 120</option>
+          <option value="150">до 150</option>
+        </select>
+      </div>
+      <div style={{display:'flex',gap:'10px',alignItems:'end'}}>
+        <button type="button" className="btn" onClick={reset}>Сбросить</button>
+        <button type="button" className="btn primary" onClick={apply}>Показать</button>
+      </div>
+    </form>
+  );
+}
+
+// ======= Сетка =======
+function Cards({items, onOpen}){
+  return items.length ? (
+    <div className="grid">
+      {items.map(a => <Card key={`${a.corp}-${a.id}`} a={a} onThumbClick={(apt, idx)=> onOpen(apt, idx)} />)}
+    </div>
+  ) : <p className="sub">Ничего не найдено под выбранные фильтры.</p>;
+}
+
+// ======= Приложение =======
+function App(){
+  const [filtered, setFiltered] = React.useState(APARTMENTS);
+  const [gallery, setGallery] = React.useState({open:false, imgs:[], idx:0, title:''});
+
+  function applyFilters(f){
+    const res = APARTMENTS.filter(a => {
+      const okCorp = f.building ? a.corp === f.building : true;
+      const okBr   = f.bedrooms ? a.bedrooms === +f.bedrooms : true;
+      const okG    = f.guests ? a.guests >= +f.guests : true;
+      const okOut  = f.outdoor ? a.outdoor === f.outdoor : true;
+      const okFl   = f.floor ? String(a.floor) === f.floor : true;
+      const okP    = f.maxPrice ? a.price <= +f.maxPrice : true;
       return okCorp && okBr && okG && okOut && okFl && okP;
     });
-    renderCards(filtered);
-    window.location.hash = '#apartments';
-  });
-
-  // === Галерея ===
-  const modal = document.getElementById('gallery');
-  const gImg = document.getElementById('gImg');
-  const gTitle = document.getElementById('gTitle');
-  let gIds = []; let gIdx = 0; let gName = '';
-  function openGallery(corp, id, idx=0){
-    const a = APARTMENTS.find(x=>x.corp===corp && x.id===id);
-    if(!a) return;
-    const title = `Корпус ${a.corp}, апартамент ${a.id}`;
-    gIds = (a.photos && a.photos.filter(Boolean).length ? a.photos : [placeholderSVG(`${a.corp}-${a.id}`)]);
-    gIdx = Math.max(0, Math.min(idx, gIds.length-1));
-    gName = title;
-    gTitle.textContent = gName + ' — ' + (gIdx+1) + '/' + gIds.length;
-    gImg.src = gIds[gIdx];
-    modal.classList.add('open');
+    setFiltered(res);
   }
-  document.getElementById('prev').onclick = ()=>{ if(!gIds.length) return; gIdx=(gIdx-1+gIds.length)%gIds.length; gTitle.textContent=gName+' — '+(gIdx+1)+'/'+gIds.length; gImg.src=gIds[gIdx]; };
-  document.getElementById('next').onclick = ()=>{ if(!gIds.length) return; gIdx=(gIdx+1)%gIds.length; gTitle.textContent=gName+' — '+(gIdx+1)+'/'+gIds.length; gImg.src=gIds[gIdx]; };
-  document.getElementById('close').onclick = ()=> modal.classList.remove('open');
-  document.getElementById('gallery').addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
 
-  // Год в футере
-  document.getElementById('year').textContent = new Date().getFullYear();
+  function openGallery(apt, startIdx=0){
+    const imgs = listPhotos(apt);
+    setGallery({
+      open: true,
+      imgs: imgs.length ? imgs : [placeholderSVG(`${apt.corp}-${apt.id}`)],
+      idx: Math.max(0, Math.min(startIdx, (imgs.length||1)-1)),
+      title: `Корпус ${apt.corp}, апартамент ${apt.id}`
+    });
+  }
+  function closeGallery(){ setGallery(g => ({...g, open:false})); }
+  function prev(){ setGallery(g => ({...g, idx: (g.idx - 1 + g.imgs.length) % g.imgs.length})); }
+  function next(){ setGallery(g => ({...g, idx: (g.idx + 1) % g.imgs.length})); }
 
-  // Первичная отрисовка
-  renderCards(APARTMENTS);
+  React.useEffect(()=>{ document.getElementById('year').textContent = new Date().getFullYear(); }, []);
+
+  return (
+    <>
+      <div id="filters"><Filters onApply={applyFilters} /></div>
+      <Cards items={filtered} onOpen={openGallery} />
+      <GalleryModal open={gallery.open} images={gallery.imgs} index={gallery.idx}
+                    title={gallery.title} onClose={closeGallery} onPrev={prev} onNext={next}/>
+    </>
+  );
+}
+
+// Монтирование
+const rootCards = ReactDOM.createRoot(document.getElementById('cards-root'));
+const rootFilters = ReactDOM.createRoot(document.getElementById('filters-root'));
+const rootApp = ReactDOM.createRoot(document.createElement('div')); // пустой
+
+// Рендер: фильтры + карточки
+rootFilters.render(<Filters onApply={(f)=>{
+  const ok = (a)=> {
+    const okCorp = f.building ? a.corp === f.building : true;
+    const okBr   = f.bedrooms ? a.bedrooms === +f.bedrooms : true;
+    const okG    = f.guests ? a.guests >= +f.guests : true;
+    const okOut  = f.outdoor ? a.outdoor === f.outdoor : true;
+    const okFl   = f.floor ? String(a.floor) === f.floor : true;
+    const okP    = f.maxPrice ? a.price <= +f.maxPrice : true;
+    return okCorp && okBr && okG && okOut && okFl && okP;
+  };
+  const filtered = APARTMENTS.filter(ok);
+  rootCards.render(<Cards items={filtered} onOpen={(apt, idx)=>{
+    appOpenGallery(apt, idx);
+  }} />);
+}} />);
+
+// Первичная отрисовка карточек
+rootCards.render(<Cards items={APARTMENTS} onOpen={(apt, idx)=> appOpenGallery(apt, idx)} />);
+
+// Глобальный контроллер галереи (используем портал)
+let galleryState = {open:false, imgs:[], idx:0, title:''};
+function renderGallery(){
+  const root = ReactDOM.createRoot(document.getElementById('gallery-root'));
+  root.render(
+    <GalleryModal open={galleryState.open} images={galleryState.imgs} index={galleryState.idx}
+      title={galleryState.title}
+      onClose={()=>{ galleryState.open=false; renderGallery(); }}
+      onPrev={()=>{ galleryState.idx=(galleryState.idx-1+galleryState.imgs.length)%galleryState.imgs.length; renderGallery(); }}
+      onNext={()=>{ galleryState.idx=(galleryState.idx+1)%galleryState.imgs.length; renderGallery(); }}
+    />
+  );
+}
+function appOpenGallery(apt, startIdx=0){
+  const imgs = listPhotos(apt);
+  galleryState = {
+    open: true,
+    imgs: imgs.length ? imgs : [placeholderSVG(`${apt.corp}-${apt.id}`)],
+    idx: Math.max(0, Math.min(startIdx, (imgs.length||1)-1)),
+    title: `Корпус ${apt.corp}, апартамент ${apt.id}`
+  };
+  renderGallery();
+}
+document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
