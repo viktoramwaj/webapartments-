@@ -8,205 +8,24 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#0b3d3d">
   <link rel="preload" href="app.js" as="script">
-  <style>
-    :root{--bg:#051f20;--text:#ecf7f5;--muted:#bfe3dd;--accent:#13c2b9;--accent2:#7df0e7;--shadow:0 10px 25px rgba(0,0,0,.25);--radius:16px}
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,#031212,var(--bg));color:var(--text);
-              font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
-    a{color:var(--accent)}
-    .wrap{max-width:1200px;margin:0 auto;padding:20px}
-    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);background:rgba(8,45,46,.75);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text)}
-    .logo{width:36px;height:36px;border-radius:9px;background:conic-gradient(from 90deg,var(--accent),var(--accent2),#2dd4bf,var(--accent));box-shadow:var(--shadow)}
-    .nav-links{display:flex;gap:14px;flex-wrap:wrap}
-    .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:var(--text);text-decoration:none;transition:.2s box-shadow,.2s transform;cursor:pointer}
-    .btn:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(180deg,var(--accent),#0ab3a9);color:#042524;border:none;font-weight:600}
-    .btn.ghost{background:transparent;border-color:rgba(255,255,255,.18)}
-    .panel{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-    .headline{font-size:clamp(26px,3.6vw,42px);line-height:1.15;margin:0 0 12px}
-    .sub{color:var(--muted);margin:0 0 16px;max-width:68ch}
-    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 14px}
-    .badge{padding:8px 12px;background:#0e4849;border:1px solid rgba(255,255,255,.08);border-radius:999px;font-size:13px;color:var(--muted)}
-    .hero{padding:56px 0 28px}
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch}
-    .filters{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-    .filters label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
-    .filters select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0a3434;color:var(--text)}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-    .card{display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)}
-    .photo{aspect-ratio:16/10;background:#0e5556;display:grid;place-items:center;color:#b7fff6;font-weight:700;letter-spacing:1px;position:relative}
-    .thumbs{display:flex;gap:8px;overflow:auto;padding:10px;background:#093131;border-top:1px solid rgba(255,255,255,.08)}
-    .thumbs img{height:56px;width:auto;border-radius:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer}
-    .card-body{padding:16px 16px 14px}
-    .card h3{margin:0 0 6px;font-size:18px}
-    .card p{margin:0;color:var(--muted);font-size:14px}
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .tag{font-size:12px;padding:6px 10px;border-radius:999px;background:#0a3434;border:1px solid rgba(255,255,255,.08);color:var(--muted)}
-    .price{margin-top:10px;font-weight:800}
-    .actions{display:flex;gap:10px;margin-top:12px}
-    .notice{padding:14px;border-radius:14px;background:#0a3434;border:1px solid rgba(255,255,255,.12);color:var(--muted);margin-top:12px;display:none}
-    .section{margin:48px 0}
-    .section h2{font-size:24px;margin:0 0 12px}
-    .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .faq details{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;background:#0a3434}
-    footer{margin-top:40px;border-top:1px solid rgba(255,255,255,.08)}
-    .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;padding:20px 0 40px}
-    .foot small{color:var(--muted)}
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px}
-    .modal.open{display:flex}
-    .modal-inner{max-width:min(1100px,95vw);max-height:90vh;background:#031818;border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden}
-    .modal img{display:block;max-height:76vh;width:auto;margin:0 auto}
-    .modal-bar{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,.12);background:#082d2e}
-    .modal-actions{display:flex;gap:8px}
-    @media (max-width:1024px){
-      .hero-grid{grid-template-columns:1fr}
-      .filters{grid-template-columns:repeat(3,1fr)}
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .faq{grid-template-columns:1fr}
-      .foot{grid-template-columns:1fr}
-    }
-    @media (max-width:560px){
-      .filters{grid-template-columns:1fr 1fr}
-      .grid{grid-template-columns:1fr}
-    }
-  </style>
 </head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#top"><div class="logo" aria-hidden="true"></div><b>Amwaj Apartments</b></a>
-      <nav class="nav-links" aria-label="Основная навигация">
-        <a href="#apartments">Апартаменты</a>
-        <a href="#amenities">Удобства</a>
-        <a href="#location">Локация</a>
-        <a href="#faq">FAQ</a>
-        <a class="btn primary" href="#contact">Забронировать</a>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top" class="wrap">
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="panel">
-          <h1 class="headline">12 частных апартаментов • Amwaj, Nabq Bay</h1>
-          <p class="sub">Корпус <b>20</b> — 6 квартир с 2 спальнями; корпус <b>6</b> — 6 квартир с 1 спальней. Разные этажи, балкон или терраса, гибкая конфигурация кроватей.</p>
-          <div class="badges">
-            <span class="badge">Пляж 250 м</span><span class="badge">Бассейны и акваспорт</span>
-            <span class="badge">24/7 ресепшен</span><span class="badge">Wi‑Fi</span><span class="badge">Nabq Bay</span>
-          </div>
-        </div>
-        <div class="panel" aria-labelledby="filterTitle">
-          <h2 id="filterTitle" style="margin:0 0 12px;">Подобрать апартаменты</h2>
-          <form class="filters" id="filterForm">
-            <div><label for="building">Корпус</label>
-              <select id="building"><option value="">Любой</option><option value="20">Корпус 20 (2 спальни)</option><option value="6">Корпус 6 (1 спальня)</option></select>
-            </div>
-            <div><label for="bedrooms">Спальни</label>
-              <select id="bedrooms"><option value="">Любые</option><option value="1">1 спальня</option><option value="2">2 спальни</option></select>
-            </div>
-            <div><label for="guests">Гостей</label>
-              <select id="guests"><option value="">Любое</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
-            </div>
-            <div><label for="outdoor">Балкон/терраса</label>
-              <select id="outdoor"><option value="">Любой</option><option value="balcony">Балкон</option><option value="terrace">Терраса</option></select>
-            </div>
-            <div><label for="floor">Этаж</label>
-              <select id="floor"><option value="">Любой</option><option value="0">Первый/цоколь</option><option value="1">1 этаж</option><option value="2">2 этаж</option></select>
-            </div>
-            <div><label for="maxPrice">Бюджет, $/ночь</label>
-              <select id="maxPrice"><option value="">Без лимита</option><option value="70">до 70</option><option value="90">до 90</option><option value="120">до 120</option><option value="150">до 150</option></select>
-            </div>
-            <div style="display:flex;gap:10px;align-items:end">
-              <button class="btn" type="reset" id="resetBtn">Сбросить</button>
-              <button class="btn primary" type="button" id="applyFilters">Показать</button>
-            </div>
-          </form>
-          <p class="sub">Фильтр работает локально по параметрам и базовой цене.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="apartments" class="section">
+  <main>
+    <section id="apartments">
       <h2>Доступные апартаменты</h2>
-      <p class="sub">Карточки ниже: фото, описание, конфигурация кроватей, этаж, балкон/терраса и цена «от $». Нажмите по превью для галереи.</p>
-      <div class="grid" id="cards"></div>
-    </section>
-
-    <section id="amenities" class="section">
-      <h2>Что включено</h2>
-      <ul class="sub">
-        <li>Собственный пляж Amwaj, понтон, шезлонги</li>
-        <li>2 больших бассейна, детский бассейн, акваспорт</li>
-        <li>Рестораны и бары на территории</li>
-        <li>Охрана и ресепшен 24/7</li>
-        <li>Кондиционер, кухня/мини‑кухня, Wi‑Fi, Smart TV*</li>
-      </ul>
-      <p class="sub">* оборудование и детали могут отличаться по апартаментам.</p>
-    </section>
-
-    <section id="location" class="section">
-      <h2>Локация</h2>
-      <div class="panel">
-        <p>Отель Amwaj — район Nabq Bay, Шарм‑эль‑Шейх. Рядом — Soho Square, аэропорт SSH, магазины и кафе.</p>
-        <p>Открыть в картах: <a href="https://maps.google.com/?q=Amwaj+Sharm+El+Sheikh" target="_blank" rel="noopener">Google Maps</a></p>
-      </div>
-    </section>
-
-    <section id="faq" class="section">
-      <h2>Частые вопросы</h2>
-      <div class="faq">
-        <details><summary>Как забронировать?</summary><p>Выберите апартамент и нажмите «Связаться». Напишите даты, состав гостей и пожелания. Мы подтвердим доступность и цену.</p></details>
-        <details><summary>Правила отмены</summary><p>Гибкие: бесплатная отмена за 7 дней; позже удерживается предоплата первой ночи (можем настроить под ваши правила).</p></details>
-        <details><summary>Скидки за длительное проживание</summary><p>Есть тарифы 14+ и 28+ ночей. Уточняйте при обращении.</p></details>
-        <details><summary>С детьми/животными</summary><p>С детьми — да. Домашние животные — по согласованию в отдельных апартаментах.</p></details>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Связаться для бронирования</h2>
-      <div class="panel">
-        <p class="sub">⏰ Время: 09:00–24:00</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="btn primary" href="https://wa.me/34673567996" target="_blank" rel="noopener">WhatsApp — Виктор</a>
-          <a class="btn" href="tel:+201096176893">Мистер Шериф: +20 109 617 6893</a>
-          <a class="btn ghost" href="mailto:booking@example.com">booking@example.com</a>
-        </div>
-        <p class="sub" style="margin-top:12px">Языки: Виктор — 🇬🇧 English / 🇪🇸 Español / 🇷🇺 Русский; Шериф — 🇪🇬 العربية.</p>
-      </div>
+      <div id="cards"></div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap foot">
-      <div>
-        <strong>Amwaj Apartments</strong>
-        <p class="sub">Частные апартаменты в отеле Amwaj, Nabq Bay, Sharm el Sheikh.</p>
-        <small>© <span id="year"></span> Все права защищены.</small>
-      </div>
-      <div>
-        <small><b>Правила</b></small><br>
-        <small><a href="#faq">Отмена и депозит</a></small><br>
-        <small><a href="#contact">Контакты</a></small>
-      </div>
-      <div>
-        <small><b>Языки</b></small><br>
-        <small>RU (этот файл). EN/IT/AR добавим позже.</small>
-      </div>
-    </div>
-  </footer>
-
   <!-- Modal Gallery -->
-  <div class="modal" id="gallery" role="dialog" aria-modal="true" aria-label="Галерея">
+  <div class="modal" id="gallery" role="dialog" aria-modal="true">
     <div class="modal-inner">
       <div class="modal-bar">
         <div id="gTitle"></div>
         <div class="modal-actions">
-          <button class="btn ghost" id="prev">←</button>
-          <button class="btn ghost" id="next">→</button>
-          <button class="btn" id="close">Закрыть</button>
+          <button id="prev">←</button>
+          <button id="next">→</button>
+          <button id="close">Закрыть</button>
         </div>
       </div>
       <img id="gImg" alt="Фото апартаментов">
