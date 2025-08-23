@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amwaj Apartments — Failsafe Index</title>
+<meta name="description" content="Апартаменты Amwaj. Страница с защитой от белого экрана.">
+<style>
+  :root{--bg:#0b1f1f;--text:#ecf7f5;--muted:#bfe3dd;--accent:#13c2b9}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:linear-gradient(180deg,#051414,var(--bg));color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial,sans-serif}
+  a{color:var(--accent)}
+  .wrap{max-width:1100px;margin:0 auto;padding:20px}
+  header{position:sticky;top:0;background:rgba(6,28,28,.8);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+  h1{margin:12px 0 6px}
+  .sub{color:var(--muted);margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03)}
+  .card .photo{aspect-ratio:16/10;background:#0e5556;display:grid;place-items:center}
+  .card .photo img{width:100%;height:100%;object-fit:cover}
+  .thumbs{display:flex;gap:8px;overflow:auto;padding:8px;border-top:1px solid rgba(255,255,255,.08);background:#0b2e2e}
+  .thumbs img{height:56px;border-radius:8px;border:1px solid rgba(255,255,255,.15)}
+  .card-body{padding:12px}
+  .error{display:none;margin:14px 0;padding:12px;border:1px solid #ff6b6b;background:#3b0e0e;color:#ffdede;border-radius:10px;white-space:pre-wrap}
+  @media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Amwaj Apartments</h1>
+    <p class="sub">Страница с защитой от ошибок JS. Даже если скрипт упадёт, вы увидите карточки ниже.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <div id="errorBox" class="error" role="alert"></div>
+    <div id="cards" class="grid">
+      <!-- SSR-like фолбек — сразу рисуем четыре ключевые карточки, чтобы не было пустого экрана -->
+      <article class="card">
+        <div class="photo"><img src="photos/202/1.jpeg" onerror="this.closest('.photo').style.background='#0e5556';this.remove()" alt="Корпус 20, апартамент 202"></div>
+        <div class="thumbs">
+          <img src="photos/202/2.jpeg" onerror="this.style.display='none'">
+          <img src="photos/202/3.jpeg" onerror="this.style.display='none'">
+          <img src="photos/202/4.jpeg" onerror="this.style.display='none'">
+        </div>
+        <div class="card-body"><b>Корпус 20, апартамент 202</b><div class="sub">2 спальни • терраса • от $120</div></div>
+      </article>
+
+      <article class="card">
+        <div class="photo"><img src="photos/601/1.jpeg" onerror="this.closest('.photo').style.background='#0e5556';this.remove()" alt="Корпус 6, апартамент 601"></div>
+        <div class="thumbs">
+          <img src="photos/601/2.jpeg" onerror="this.style.display='none'">
+          <img src="photos/601/3.jpeg" onerror="this.style.display='none'">
+        </div>
+        <div class="card-body"><b>Корпус 6, апартамент 601</b><div class="sub">1 спальня • терраса • от $90</div></div>
+      </article>
+
+      <article class="card">
+        <div class="photo"><img src="photos/602/1.jpeg" onerror="this.closest('.photo').style.background='#0e5556';this.remove()" alt="Корпус 6, апартамент 602"></div>
+        <div class="thumbs">
+          <img src="photos/602/2.jpeg" onerror="this.style.display='none'">
+          <img src="photos/602/3.jpeg" onerror="this.style.display='none'">
+        </div>
+        <div class="card-body"><b>Корпус 6, апартамент 602</b><div class="sub">1 спальня • терраса • от $100</div></div>
+      </article>
+
+      <article class="card">
+        <div class="photo"><img src="photos/603/1.jpeg" onerror="this.closest('.photo').style.background='#0e5556';this.remove()" alt="Корпус 6, апартамент 603"></div>
+        <div class="thumbs">
+          <img src="photos/603/2.jpeg" onerror="this.style.display='none'">
+          <img src="photos/603/3.jpeg" onerror="this.style.display='none'">
+        </div>
+        <div class="card-body"><b>Корпус 6, апартамент 603</b><div class="sub">1 спальня • терраса • от $80</div></div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  // Живой перехват ошибок — покажем их на странице, чтобы не было "белого экрана"
+  const errorBox = document.getElementById('errorBox');
+  function showError(msg){ errorBox.style.display='block'; errorBox.textContent = msg; }
+  window.addEventListener('error', function(e){ showError('JS error: ' + (e.message||e.error)); });
+  window.addEventListener('unhandledrejection', function(e){ showError('Promise rejection: ' + e.reason); });
+
+  try{
+    // Небольшая инициализация: подставим год в футере, если он есть
+    var yearEl = document.getElementById('year');
+    if(yearEl) yearEl.textContent = new Date().getFullYear();
+  }catch(err){
+    showError('Init failed: ' + err);
+  }
+})();
+</script>
+</body>
+</html>
