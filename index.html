@@ -37,7 +37,7 @@
   .section h2{font-size:24px;margin:0 0 12px;font-weight:700}
 
   /* Фильтры */
-  .filters-section{margin-bottom:24px;padding:20px;background:rgba(255,255,255,.04);border-radius:var(--radius);border:1px solid rgba(255,255,255,.12)}
+  .filters-section{margin-bottom:24px;padding:20px;background:rgba(255,255,255,.04);border-radius:var(--radius);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow)}
   .filters-form{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
   .filters-form .field{display:flex;flex-direction:column;gap:6px}
   .filters-form label{font-size:13px;color:var(--muted)}
@@ -56,9 +56,10 @@
   .price{margin-top:10px;font-weight:800;font-size:18px}
 
   /* Контакты */
-  .contact-panel{background:#0a3434;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;box-shadow:0 6px 15px rgba(0,0,0,.15)}
+  .contact-panel{background:#0a3434;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;box-shadow:0 6px 15px rgba(0,0,0,.15);margin:0 auto;max-width:800px;text-align:center;}
   .contact-panel h2{margin:0 0 8px}
   .contact-panel p{margin:0;color:var(--muted)}
+  .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:12px}
   
   /* Футер */
   footer{margin:36px 0 28px;text-align:center;color:var(--muted);font-size:13px}
@@ -92,7 +93,7 @@
       <nav class="nav-links" aria-label="Основная навигация">
         <a href="#apartments">Апартаменты</a>
         <a href="#contact">Контакты</a>
-        <a href="tel:+34673567996" class="btn primary">Бронь по WhatsApp</a>
+        <a href="https://wa.me/34673567996" class="btn primary">Бронь по WhatsApp</a>
       </nav>
     </div>
   </header>
@@ -132,7 +133,7 @@
     <div class="contact-panel">
       <h2>Связаться для бронирования</h2>
       <p style="margin:0 0 10px;">⏰ 09:00–24:00</p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px">
+      <div class="contact-links">
         <a class="btn primary" href="https://wa.me/34673567996" target="_blank" rel="noopener">WhatsApp — Виктор</a>
         <a class="btn" href="tel:+201096176893">Мистер Шериф: +20 109 617 6893</a>
         <a class="btn ghost" href="mailto:9621441@gmail.com">booking@example.com</a>
