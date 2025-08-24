@@ -1,116 +1,45 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Amwaj Apartments — V7</title>
-  <meta name="description" content="Amwaj Apartments — подбор апартаментов.">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="theme-color" content="#0b3d3d">
-  <style>/* V7 compact styles */
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Amwaj Apartments V7-fix2</title>
+<style>
 :root{--bg:#051f20;--text:#ecf7f5;--muted:#bfe3dd;--accent:#13c2b9;--accent2:#7df0e7;--shadow:0 10px 25px rgba(0,0,0,.25);--radius:16px}
-*{box-sizing:border-box}html,body{margin:0;padding:0;background:linear-gradient(180deg,#031212,var(--bg));color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
-a{color:var(--accent)}
+*{box-sizing:border-box}body,html{margin:0;padding:0;background:linear-gradient(180deg,#031212,var(--bg));color:var(--text);font:16px/1.55 system-ui}
 .wrap{max-width:1200px;margin:0 auto;padding:20px}
-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);background:rgba(8,45,46,.75);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
-.brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text)}
-.logo{width:36px;height:36px;border-radius:9px;background:conic-gradient(from 90deg,var(--accent),var(--accent2),#2dd4bf,var(--accent));box-shadow:var(--shadow)}
-.nav-links{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:var(--text);text-decoration:none;transition:.2s box-shadow,.2s transform;cursor:pointer}
-.btn:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+header{position:sticky;top:0;background:#082d2e;z-index:50}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.btn{padding:8px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);text-decoration:none;cursor:pointer}
 .btn.primary{background:linear-gradient(180deg,var(--accent),#0ab3a9);color:#042524;border:none;font-weight:600}
 .btn.ghost{background:transparent;border-color:rgba(255,255,255,.18)}
-.hero{padding:40px 0 16px}
-.section{margin:36px 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media (max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.grid{grid-template-columns:1fr}}
-.card{display:flex;flex-direction:column;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)}
-.photo{aspect-ratio:16/10;background:#0e5556;display:grid;place-items:center;color:#b7fff6;font-weight:700;letter-spacing:1px;position:relative}
-.photo img{width:100%;height:100%;object-fit:cover;display:block}
-.card-body{padding:16px 16px 14px}
-.card h3{margin:0 0 6px;font-size:18px}
-.card p{margin:0;color:var(--muted);font-size:14px}
-.price{margin-top:10px;font-weight:800}
-.actions{display:flex;gap:10px;margin-top:12px;align-items:center}
-.muted{color:var(--muted);font-size:13px}
-footer{margin-top:40px;border-top:1px solid rgba(255,255,255,.08)}
-.foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;padding:20px 0 40px}
-/* Modal gallery */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:20px}
+@media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.03)}
+.photo{aspect-ratio:16/10;background:#0e5556}
+.photo img{width:100%;height:100%;object-fit:cover}
+.card-body{padding:12px}
+.price{font-weight:700;margin-top:6px}
+.actions{margin-top:8px;display:flex;gap:8px;align-items:center}
+.muted{color:var(--muted);font-size:14px}
+footer{margin-top:40px;border-top:1px solid rgba(255,255,255,.08);padding:20px}
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center}
 .modal.open{display:flex}
-.modal-inner{max-width:min(1100px,95vw);max-height:90vh;background:#031818;border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden}
-.modal img{display:block;max-height:76vh;width:auto;margin:0 auto}
-.modal-bar{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,.12);background:#082d2e}
-.modal-actions{display:flex;gap:8px}</style>
-</head>
+.modal-inner{max-width:95vw;max-height:90vh;background:#031818;border-radius:12px;overflow:hidden}
+.modal-bar{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#082d2e}
+.modal img{max-height:76vh;width:auto;display:block;margin:0 auto}
+</style></head>
 <body>
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#top"><div class="logo" aria-hidden="true"></div><b>Amwaj Apartments</b></a>
-    <nav class="nav-links" aria-label="Навигация">
-      <a href="amwaj-apartments-ru.html">RU</a>
-      <a class="btn primary" href="#contact">Забронировать</a>
-    </nav>
-  </div>
-</header>
-
-<main id="top" class="wrap">
-  <section class="hero">
-    <h1>Частные апартаменты — Amwaj, Nabq Bay</h1>
-    <p class="muted">На карточке отображается только первое фото <b>1.jpeg</b>. В галерее — все фото <b>1–12.jpeg</b> (для 601, 602, 603, 202). Остальные добавлены в список, фото появятся позже.</p>
-  </section>
-
-  <section class="section">
-    <h2>Апартаменты</h2>
-    <div id="grid" class="grid"></div>
-  </section>
-
-  <section id="contact" class="section">
-    <h2>Связаться для бронирования</h2>
-    <p class="muted">⏰ Время: 09:00–24:00</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn primary" href="https://wa.me/34673567996" target="_blank" rel="noopener">WhatsApp — Виктор</a>
-      <a class="btn" href="tel:+201096176893">Мистер Шериф: +20 109 617 6893</a>
-      <a class="btn ghost" href="mailto:booking@example.com">booking@example.com</a>
-    </div>
-  </section>
+<header><div class="wrap nav"><b>Amwaj Apartments</b><a class="btn primary" href="#contact">Забронировать</a></div></header>
+<main class="wrap">
+<h1>Amwaj Apartments — V7-fix2</h1>
+<p class="muted">Фото берутся из <b>/img/&lt;ID&gt;/1.jpeg … 12.jpeg</b></p>
+<div id="grid" class="grid"></div>
+<section id="contact"><h2>Связаться</h2><p>WhatsApp Виктор: <a href="https://wa.me/34673567996">34673567996</a></p></section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div>
-      <strong>Amwaj Apartments</strong>
-      <p class="muted">Частные апартаменты в отеле Amwaj, Nabq Bay, Sharm el Sheikh.</p>
-      <small>© <span id="year"></span> Все права защищены.</small>
-    </div>
-    <div>
-      <small><b>Правила</b></small><br>
-      <small><a href="#contact">Контакты</a></small>
-    </div>
-    <div>
-      <small><b>Языки</b></small><br>
-      <small>RU готова. EN/IT/AR — позже.</small>
-    </div>
-  </div>
-</footer>
-
-<!-- Modal Gallery -->
-<div class="modal" id="gallery" role="dialog" aria-modal="true" aria-label="Галерея">
-  <div class="modal-inner">
-    <div class="modal-bar">
-      <div id="gTitle"></div>
-      <div class="modal-actions">
-        <button class="btn ghost" id="prev">←</button>
-        <button class="btn ghost" id="next">→</button>
-        <button class="btn" id="close">Закрыть</button>
-      </div>
-    </div>
-    <img id="gImg" alt="Фото апартаментов">
-  </div>
-</div>
-
+<footer>© <span id="year"></span></footer>
+<div class="modal" id="gallery"><div class="modal-inner">
+<div class="modal-bar"><div id="gTitle"></div><div><button id="prev" class="btn ghost">←</button><button id="next" class="btn ghost">→</button><button id="close" class="btn">X</button></div></div>
+<img id="gImg" alt="Фото"></div></div>
 <script src="app.js"></script>
-</body>
-</html>
+</body></html>
