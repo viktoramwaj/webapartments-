@@ -1,9 +1,6 @@
 
-// V7-fix4 — визуальные копии 601 для всех остальных карточек.
-// Папка изображений: img/<srcId>/1..12.jpeg.
-// class "imgbox"; слово "photo" не используется.
-
-const WITH_OWN = new Set(['601','602','603','202']); // у этих есть свои картинки
+// V7-header — карточки + галерея; пути к файлам: img/<ID>/1..12.jpeg
+const WITH_OWN = new Set(['601','602','603','202']);
 const ITEMS = [
   { corp:'6', id:'601', title:'Корпус 6, апартамент 601 • 1 спальня • Терраса', size:55, guests:3, floor:0, price:90 },
   { corp:'6', id:'602', title:'Корпус 6, апартамент 602 • 1 спальня • Терраса', size:55, guests:5, floor:0, price:100 },
@@ -19,10 +16,7 @@ const ITEMS = [
   { corp:'20', id:'206', title:'Корпус 20, апартамент 206 • 2 спальни • Балкон', size:90, guests:4, floor:2, price:120 },
 ];
 
-function srcIdOf(id){
-  return WITH_OWN.has(id) ? id : '601'; // по просьбе: копии 601 для остальных
-}
-
+function srcIdOf(id){ return WITH_OWN.has(id) ? id : '601'; }
 function mainImgPath(id){ return `img/${srcIdOf(id)}/1.jpeg`; }
 function galleryList(id){ const s = srcIdOf(id); return Array.from({length:12},(_,i)=>`img/${s}/${i+1}.jpeg`); }
 
@@ -35,11 +29,10 @@ function render(){
   const grid = document.getElementById('grid');
   grid.innerHTML = '';
   ITEMS.forEach(a => {
-    const main = mainImgPath(a.id);
     const el = document.createElement('article');
     el.className = 'card';
     el.innerHTML = `
-      <div class="imgbox"><img alt="${a.title}" src="${main}" onerror="this.src='${stubSVG(a.id)}'"/></div>
+      <div class="imgbox"><img alt="${a.title}" src="${mainImgPath(a.id)}" onerror="this.src='${stubSVG(a.id)}'"/></div>
       <div class="card-body">
         <h3>${a.title}</h3>
         <p class="muted">Площадь ${a.size} м² • до ${a.guests} гостей • Этаж ${a.floor}</p>
