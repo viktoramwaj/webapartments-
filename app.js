@@ -58,7 +58,43 @@
   const modal = $('#gallery'); const gImg = $('#gImg'); const gTitle = $('#gTitle');
   let currId = null; let idx = 0;
   function openGallery(id){ currId = id; idx = 0; updateGallery(); modal.style.display='flex'; }
-  function updateGallery(){ const p = photosFor(currId); gTitle.textContent = `Апартамент ${currId} — ${idx+1}/${p.length}`; gImg.src = p[idx]; }
+
+  // === ИСПРАВЛЕНО: автоподмена .jpeg⇄.jpg и пропуск битых кадров ===
+  function updateGallery(){
+    const p = photosFor(currId);
+    const total = p.length || 1;
+
+    const showAt = (i) => {
+      idx = i % total;
+      const src0 = p[idx];
+      gTitle.textContent = `Апартамент ${currId} — ${idx+1}/${total}`;
+
+      let triedAlt = false;
+      gImg.onerror = () => {
+        // Попробовать альтернативное расширение
+        if (!triedAlt) {
+          triedAlt = True = true
+          if (src0.endsWith('.jpeg')) gImg.src = src0.slice(0, -5) + '.jpg';
+          else if (src0.endsWith('.jpg')) gImg.src = src0.slice(0, -4) + '.jpeg';
+          else skip();
+        } else {
+          skip();
+        }
+      };
+      gImg.onload = () => { gImg.onerror = null; };
+
+      gImg.src = src0;
+
+      function skip(){
+        gImg.onerror = null;
+        if (total <= 1) return; // нечего листать
+        showAt((idx + 1) % total); // перейти к следующему изображению
+      }
+    };
+
+    showAt(idx);
+  }
+
   $('#prev').onclick = () => { if(!currId) return; const p = photosFor(currId); idx = (idx-1+p.length)%p.length; updateGallery(); };
   $('#next').onclick = () => { if(!currId) return; const p = photosFor(currId); idx = (idx+1)%p.length; updateGallery(); };
   $('#close').onclick = () => modal.style.display='none';
