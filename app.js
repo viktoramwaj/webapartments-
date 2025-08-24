@@ -1,8 +1,9 @@
 
-// V7-fix3 — без слова "photo" в коде.
-// Изображения лежат в img/<ID>/1.jpeg … 12.jpeg. На карточке показываем 1.jpeg.
-// Галерея открывается у всех: если нет файлов — показывается SVG-заглушка.
+// V7-fix4 — визуальные копии 601 для всех остальных карточек.
+// Папка изображений: img/<srcId>/1..12.jpeg.
+// class "imgbox"; слово "photo" не используется.
 
+const WITH_OWN = new Set(['601','602','603','202']); // у этих есть свои картинки
 const ITEMS = [
   { corp:'6', id:'601', title:'Корпус 6, апартамент 601 • 1 спальня • Терраса', size:55, guests:3, floor:0, price:90 },
   { corp:'6', id:'602', title:'Корпус 6, апартамент 602 • 1 спальня • Терраса', size:55, guests:5, floor:0, price:100 },
@@ -18,8 +19,12 @@ const ITEMS = [
   { corp:'20', id:'206', title:'Корпус 20, апартамент 206 • 2 спальни • Балкон', size:90, guests:4, floor:2, price:120 },
 ];
 
-function mainImgPath(id){ return `img/${id}/1.jpeg`; }
-function galleryList(id){ return Array.from({length:12}, (_,i)=>`img/${id}/${i+1}.jpeg`); }
+function srcIdOf(id){
+  return WITH_OWN.has(id) ? id : '601'; // по просьбе: копии 601 для остальных
+}
+
+function mainImgPath(id){ return `img/${srcIdOf(id)}/1.jpeg`; }
+function galleryList(id){ const s = srcIdOf(id); return Array.from({length:12},(_,i)=>`img/${s}/${i+1}.jpeg`); }
 
 function stubSVG(id){
   const svg = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='750'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%2313c2b9'/><stop offset='1' stop-color='%237df0e7'/></linearGradient></defs><rect width='100%' height='100%' fill='url(#g)'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,Segoe UI,Roboto' font-size='56' fill='#042524' opacity='.85'>${id}</text></svg>`);
