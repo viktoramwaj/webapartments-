@@ -7,63 +7,23 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#0b3d3d">
 <style>
-  :root{
-    --green:#0b3d3d;
-    --green-2:#0a3434;
-    --bg:#061b1b;
-    --text:#ecf7f5;
-    --muted:#cde7e3;
-    --shadow:0 10px 30px rgba(0,0,0,.25);
-    --radius:18px;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:linear-gradient(180deg,#041414,var(--bg));color:var(--text);
-            font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
-  img{max-width:100%;display:block}
-  a{color:#7df0e7;text-decoration:none}
-  /* --- HEADER --- */
-  header{
-    background:var(--green);
-    padding:18px 12px 16px;
-    text-align:center;
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  header h1{
-    margin:2px 0 8px;
-    color:#fff;
-    font-size:clamp(28px,4.2vw,42px);
-    font-weight:800;
-    letter-spacing:.2px;
-  }
-  .contacts{
-    color:#fff;
-    font-size:13.5px;
-    line-height:1.55;
-    opacity:.95;
-  }
+  :root{--green:#0b3d3d;--bg:#061b1b;--text:#ecf7f5;--muted:#cde7e3;--shadow:0 10px 30px rgba(0,0,0,.25);--radius:18px}
+  *{box-sizing:border-box} html,body{margin:0;padding:0;background:linear-gradient(180deg,#041414,var(--bg));color:var(--text);
+  font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+  img{max-width:100%;display:block} a{color:#7df0e7;text-decoration:none}
+  header{background:var(--green);padding:18px 12px 16px;text-align:center;border-bottom:1px solid rgba(255,255,255,.08)}
+  header h1{margin:2px 0 4px;color:#fff;font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:.2px}
   .wrap{max-width:1200px;margin:0 auto;padding:18px}
-  /* --- GRID --- */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-  }
-  .card{
-    background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:var(--radius);
-    overflow:hidden;
-    box-shadow:var(--shadow);
-  }
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
   .photo{aspect-ratio:16/10;background:#0e5556;position:relative}
+  .thumbs{display:flex;gap:8px;overflow:auto;padding:10px;background:#093131;border-top:1px solid rgba(255,255,255,.08)}
+  .thumbs img{height:56px;width:auto;border-radius:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer}
   .card-body{padding:14px 16px 16px}
-  .card h3{margin:0 0 6px;font-size:18px}
-  .card p{margin:0;color:var(--muted);font-size:14px}
-  .price{margin-top:10px;font-weight:800}
-  .actions{display:flex;gap:10px;margin-top:12px}
+  .card h3{margin:0 0 6px;font-size:18px} .card p{margin:0;color:var(--muted);font-size:14px}
+  .price{margin-top:10px;font-weight:800} .actions{display:flex;gap:10px;margin-top:12px}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.14);color:var(--text);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));cursor:pointer}
   .btn.primary{background:linear-gradient(180deg,#13c2b9,#0ab3a9);color:#042524;border:none;font-weight:700}
-  /* --- MODAL --- */
   .modal{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;padding:20px}
   .modal.open{display:flex}
   .modal-inner{max-width:min(1100px,95vw);max-height:90vh;background:#031818;border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
@@ -78,15 +38,24 @@
 <body>
   <header>
     <h1>Welcome to Amwaj hotel Apartments</h1>
-    <div class="contacts">
-      Мистер Виктор — WhatsApp: +34 673 567 996 (анг. исп. рус.)<br>
-      Мистер Шериф — Tel: +20 109 617 6893 (арабский язык)
-    </div>
   </header>
 
   <main class="wrap">
     <div id="cards" class="grid"></div>
   </main>
+
+  <!-- Контакты (внизу) -->
+  <section id="contact" class="wrap">
+    <div style="background:#0a3434;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px">
+      <h2 style="margin:0 0 8px">Связаться для бронирования</h2>
+      <p style="margin:0;color:var(--muted)">⏰ Время: 09:00–24:00</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn primary" href="https://wa.me/34673567996" target="_blank" rel="noopener">WhatsApp — Виктор</a>
+        <a class="btn" href="tel:+201096176893">Мистер Шериф: +20 109 617 6893</a>
+      </div>
+      <p style="margin:10px 0 0;color:var(--muted)">Языки: Виктор — 🇬🇧 English / 🇪🇸 Español / 🇷🇺 Русский; Шериф — 🇪🇬 العربية.</p>
+    </div>
+  </section>
 
   <footer>© <span id="year"></span> Amwaj Apartments</footer>
 
