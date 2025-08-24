@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="ru"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Amwaj Apartments V7-fix2</title>
+<title>Amwaj Apartments V7-fix3</title>
 <style>
 :root{--bg:#051f20;--text:#ecf7f5;--muted:#bfe3dd;--accent:#13c2b9;--accent2:#7df0e7;--shadow:0 10px 25px rgba(0,0,0,.25);--radius:16px}
-*{box-sizing:border-box}body,html{margin:0;padding:0;background:linear-gradient(180deg,#031212,var(--bg));color:var(--text);font:16px/1.55 system-ui}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:linear-gradient(180deg,#031212,var(--bg));color:var(--text);font:16px/1.55 system-ui}
 .wrap{max-width:1200px;margin:0 auto;padding:20px}
 header{position:sticky;top:0;background:#082d2e;z-index:50}
 .nav{display:flex;justify-content:space-between;align-items:center}
@@ -15,8 +15,8 @@ header{position:sticky;top:0;background:#082d2e;z-index:50}
 @media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.grid{grid-template-columns:1fr}}
 .card{border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.03)}
-.photo{aspect-ratio:16/10;background:#0e5556}
-.photo img{width:100%;height:100%;object-fit:cover}
+.imgbox{aspect-ratio:16/10;background:#0e5556}
+.imgbox img{width:100%;height:100%;object-fit:cover;display:block}
 .card-body{padding:12px}
 .price{font-weight:700;margin-top:6px}
 .actions{margin-top:8px;display:flex;gap:8px;align-items:center}
@@ -32,14 +32,14 @@ footer{margin-top:40px;border-top:1px solid rgba(255,255,255,.08);padding:20px}
 <body>
 <header><div class="wrap nav"><b>Amwaj Apartments</b><a class="btn primary" href="#contact">Забронировать</a></div></header>
 <main class="wrap">
-<h1>Amwaj Apartments — V7-fix2</h1>
-<p class="muted">Фото берутся из <b>/img/&lt;ID&gt;/1.jpeg … 12.jpeg</b></p>
+<h1>Amwaj Apartments — V7-fix3</h1>
+<p class="muted">Пути изображений: <b>img/&lt;ID&gt;/1.jpeg … 12.jpeg</b>. Слово <i>photo</i> не используется нигде в коде.</p>
 <div id="grid" class="grid"></div>
 <section id="contact"><h2>Связаться</h2><p>WhatsApp Виктор: <a href="https://wa.me/34673567996">34673567996</a></p></section>
 </main>
 <footer>© <span id="year"></span></footer>
 <div class="modal" id="gallery"><div class="modal-inner">
 <div class="modal-bar"><div id="gTitle"></div><div><button id="prev" class="btn ghost">←</button><button id="next" class="btn ghost">→</button><button id="close" class="btn">X</button></div></div>
-<img id="gImg" alt="Фото"></div></div>
+<img id="gImg" alt="Картинка"></div></div>
 <script src="app.js"></script>
 </body></html>
