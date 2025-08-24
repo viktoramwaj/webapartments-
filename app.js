@@ -1,5 +1,5 @@
 
-// V7-header — карточки + галерея; пути к файлам: img/<ID>/1..12.jpeg
+// V7-header-now — карточки + галерея; пути к файлам: img/<ID>/1..12.jpeg
 const WITH_OWN = new Set(['601','602','603','202']);
 const ITEMS = [
   { corp:'6', id:'601', title:'Корпус 6, апартамент 601 • 1 спальня • Терраса', size:55, guests:3, floor:0, price:90 },
