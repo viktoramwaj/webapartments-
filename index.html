@@ -21,10 +21,7 @@
   .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
   .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text);font-weight:800;font-size:24px}
   .logo{width:36px;height:36px;border-radius:9px;background:conic-gradient(from 90deg,var(--accent),var(--accent2),#2dd4bf,var(--accent));box-shadow:var(--shadow)}
-  .nav-links{display:flex;gap:14px;flex-wrap:wrap}
-  .nav-links a{color:var(--muted);text-decoration:none;font-weight:700;transition:.2s color}
-  .nav-links a:hover{color:var(--text)}
-
+  
   /* Кнопки */
   .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:var(--text);text-decoration:none;transition:.2s box-shadow,.2s transform;cursor:pointer;font-weight:500}
   .btn:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
@@ -60,7 +57,8 @@
   .contact-panel h2{margin:0 0 8px}
   .contact-panel p{margin:0;color:var(--muted)}
   .contact-links{display:flex;flex-direction: column;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:12px; text-align: left; max-width: 400px; margin: 0 auto;}
-  
+  .contact-links p{color: var(--text) !important;}
+
   /* Футер */
   footer{margin:36px 0 28px;text-align:center;color:var(--muted);font-size:13px}
 
@@ -87,19 +85,13 @@
 <body>
   <header>
     <div class="wrap nav">
-      <a class="brand" href="#top">
+      <div class="brand">
         <div class="logo" aria-hidden="true"></div>Welcome to Amwaj hotel Apartments
-      </a>
-      <nav class="nav-links" aria-label="Основная навигация">
-        <a href="#apartments">Апартаменты</a>
-        <a href="#contact">Контакты</a>
-        <a href="https://wa.me/34673567996" class="btn primary">Бронь по WhatsApp</a>
-      </nav>
+      </div>
     </div>
   </header>
 
   <main class="wrap">
-    
     <section class="filters-section">
       <h2 style="margin-top:0;">Найти апартамент</h2>
       <form class="filters-form">
@@ -131,17 +123,11 @@
   <section id="contact" class="wrap section">
     <div class="contact-panel">
       <h2>Связаться для бронирования</h2>
-      <p style="margin:0 0 10px;">⏰ 09:00–24:00</p>
+      <p style="margin:0 0 10px; color: var(--text);">⏰ 09:00–21:00</p>
       <div class="contact-links">
-        <p>
-          Мистер Виктор: только WhatsApp <a href="https://wa.me/34673567996" target="_blank">+34 673 567 996</a> ( 🇬🇧 English / 🇪🇸 Español / 🇷🇺 Русский )
-        </p>
-        <p>
-          Мистер Шериф: <a href="tel:+201096176893">+20 109 617 6893</a> ( 🇪🇬 العربية. )
-        </p>
-        <p>
-          Email: <a href="mailto:9621441@gmail.com">9621441@gmail.com</a>
-        </p>
+        <p>Мистер Виктор: только WhatsApp +34 673 567 996 ( 🇬🇧 English / 🇪🇸 Español / 🇷🇺 Русский )</p>
+        <p>Мистер Шериф: +20 109 617 6893 ( 🇪🇬 العربية. )</p>
+        <p>Email: 9621441@gmail.com</p>
       </div>
     </div>
   </section>
