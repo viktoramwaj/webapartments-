@@ -17,9 +17,9 @@
   .wrap{max-width:1200px;margin:0 auto;padding:18px}
   
   /* Хедер и навигация */
-  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);background:rgba(8,45,46,.75);border-bottom:1px solid rgba(255,255,255,.06)}
-  .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
-  .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text);font-weight:800;font-size:24px}
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);background:rgba(8,45,46,.75);border-bottom:1px solid rgba(255,255,255,.06); text-align: center;}
+  .nav{display:inline-flex; gap: 12px; align-items:center; justify-content:center;}
+  .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text);font-weight:800;font-size:24px; text-align: center;}
   .logo{width:36px;height:36px;border-radius:9px;background:conic-gradient(from 90deg,var(--accent),var(--accent2),#2dd4bf,var(--accent));box-shadow:var(--shadow)}
   
   /* Кнопки */
@@ -54,9 +54,8 @@
 
   /* Контакты */
   .contact-panel{background:#0a3434;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;box-shadow:0 6px 15px rgba(0,0,0,.15);margin:0 auto;max-width:800px;text-align:center;}
-  .contact-panel h2{margin:0 0 8px}
-  .contact-panel p{margin:0;color:var(--muted)}
-  .contact-links{display:flex;flex-direction: column;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:12px; text-align: left; max-width: 400px; margin: 0 auto;}
+  .contact-panel h2{margin:0 0 8px; text-align: center;}
+  .contact-links{display:flex;flex-direction: column;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;}
   .contact-links p{color: var(--text) !important;}
 
   /* Футер */
