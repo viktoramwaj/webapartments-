@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amwaj hotel Apartments</title>
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0b3d3d">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{--green:#0b3d3d;--bg:#061b1b;--text:#ecf7f5;--muted:#cde7e3;--radius:18px;--accent:#13c2b9;--accent2:#7df0e7;--shadow:0 10px 25px rgba(0,0,0,.25)}
+  *{box-sizing:border-box} html,body{margin:0;background:linear-gradient(180deg, #031212, var(--bg));color:var(--text);font:16px/1.55 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Noto Sans, sans-serif}
+  .wrap{max-width:1200px;margin:0 auto;padding:18px}
+  
+  /* Хедер и навигация */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(12px);background:rgba(8,45,46,.75);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav{display:flex;gap:16px;align-items:center;justify-content:space-between}
+  .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--text);font-weight:800;font-size:24px}
+  .logo{width:36px;height:36px;border-radius:9px;background:conic-gradient(from 90deg,var(--accent),var(--accent2),#2dd4bf,var(--accent));box-shadow:var(--shadow)}
+  .nav-links{display:flex;gap:14px;flex-wrap:wrap}
+  .nav-links a{color:var(--muted);text-decoration:none;font-weight:700;transition:.2s color}
+  .nav-links a:hover{color:var(--text)}
+
+  /* Кнопки */
+  .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:var(--text);text-decoration:none;transition:.2s box-shadow,.2s transform;cursor:pointer;font-weight:500}
+  .btn:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(180deg,var(--accent),#0ab3a9);color:#042524;border:none;font-weight:700}
+  .btn.ghost{background:transparent;border-color:rgba(255,255,255,.18)}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+
+  /* Секции */
+  .section{margin:48px 0}
+  .section h2{font-size:24px;margin:0 0 12px;font-weight:700}
+
+  /* Фильтры */
+  .filters-section{margin-bottom:24px;padding:20px;background:rgba(255,255,255,.04);border-radius:var(--radius);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow)}
+  .filters-form{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
+  .filters-form .field{display:flex;flex-direction:column;gap:6px}
+  .filters-form label{font-size:13px;color:var(--muted)}
+  .filters-form input, .filters-form select{padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0a3434;color:#ecf7f5}
+
+  /* Карточки */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.04);display:flex;flex-direction:column;box-shadow:0 6px 15px rgba(0,0,0,.15)}
+  .photo{aspect-ratio:16/10;background:#0e5556}
+  .thumbs{display:flex;gap:8px;overflow:auto;padding:10px;background:#093131;border-top:1px solid rgba(255,255,255,.08)}
+  .thumbs img{height:56px;width:auto;border-radius:10px;border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:.2s border-color}
+  .thumbs img:hover{border-color:var(--accent)}
+  .card-body{padding:14px 16px 16px;flex-grow:1}
+  .card h3{margin:0 0 6px;font-size:18px;font-weight:700}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .price{margin-top:10px;font-weight:800;font-size:18px}
+
+  /* Контакты */
+  .contact-panel{background:#0a3434;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;box-shadow:0 6px 15px rgba(0,0,0,.15);margin:0 auto;max-width:800px;text-align:center;}
+  .contact-panel h2{margin:0 0 8px}
+  .contact-panel p{margin:0;color:var(--muted)}
+  .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+  
+  /* Футер */
+  footer{margin:36px 0 28px;text-align:center;color:var(--muted);font-size:13px}
+
+  /* Модалка галереи */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
+  .modal.open{display:flex}
+  .modal-inner{max-width:min(1100px,95vw);max-height:90vh;background:#031818;border:1px solid rgba(255,255,255,.15);border-radius:14px;overflow:hidden}
+  .modal-bar{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,.12);background:#082d2e;color:#bfe3dd}
+  .modal-actions{display:flex;gap:8px}
+  .modal img{display:block;max-height:76vh;width:auto;margin:0 auto}
+
+  /* Адаптивность */
+  @media (max-width:1024px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .nav-links a{display:none}
+    .brand{font-size:20px}
+  }
+  @media (max-width:560px){
+    .grid{grid-template-columns:1fr}
+    .wrap{padding:12px}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true"></div>Amwaj Apartments
+      </a>
+      <nav class="nav-links" aria-label="Основная навигация">
+        <a href="#apartments">Апартаменты</a>
+        <a href="#contact">Контакты</a>
+        <a href="https://wa.me/34673567996" class="btn primary">Бронь по WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 style="font-size:clamp(28px,4.2vw,42px);font-weight:800;text-align:center;margin:40px 0 20px">Amwaj hotel Apartments</h1>
+    
+    <section class="filters-section">
+      <h2 style="margin-top:0;">Найти апартамент</h2>
+      <form class="filters-form">
+        <div class="field">
+          <label for="bedrooms">Спальни</label>
+          <select id="bedrooms">
+            <option value="">Любые</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="maxPrice">Цена до ($)</label>
+          <input type="number" id="maxPrice" min="0" placeholder="Без лимита">
+        </div>
+        <div>
+          <button type="button" class="btn primary" id="apply-filters">Применить</button>
+          <button type="reset" class="btn" id="reset-filters">Сбросить</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="apartments" class="section">
+      <h2 style="margin:0 0 16px">Доступные апартаменты</h2>
+      <div id="cards" class="grid"></div>
+    </section>
+  </main>
+
+  <section id="contact" class="wrap section">
+    <div class="contact-panel">
+      <h2>Связаться для бронирования</h2>
+      <p style="margin:0 0 10px;">⏰ 09:00–24:00</p>
+      <div class="contact-links">
+        <a class="btn primary" href="https://wa.me/34673567996" target="_blank" rel="noopener">WhatsApp — Виктор</a>
+        <a class="btn" href="tel:+201096176893">Мистер Шериф: +20 109 617 6893</a>
+        <a class="btn ghost" href="mailto:9621441@gmail.com">booking@example.com</a>
+      </div>
+      <p>Виктор: 🇬🇧 English / 🇪🇸 Español / 🇷🇺 Русский | Шериф: 🇪🇬 العربية</p>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Amwaj Apartments</footer>
+
+  <div class="modal" id="gallery" role="dialog" aria-modal="true" aria-label="Галерея">
+    <div class="modal-inner">
+      <div class="modal-bar">
+        <div id="gTitle"></div>
+        <div class="modal-actions">
+          <button class="btn" id="prev">←</button>
+          <button class="btn" id="next">→</button>
+          <button class="btn primary" id="close">Закрыть</button>
+        </div>
+      </div>
+      <img id="gImg" alt="Фото апартаментов">
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
