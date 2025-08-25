@@ -52,6 +52,12 @@
   .card p{margin:0;color:var(--muted);font-size:14px}
   .price{margin-top:10px;font-weight:800;font-size:18px}
 
+  /* Контакты */
+  .contact-panel{background:#0a3434;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;box-shadow:0 6px 15px rgba(0,0,0,.15);margin:0 auto;max-width:800px;text-align:center;}
+  .contact-panel h2{margin:0 0 8px; text-align: center;}
+  .contact-links{display:flex;flex-direction: column;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:12px;}
+  .contact-links p{color: var(--text) !important;}
+
   /* Футер */
   footer{margin:36px 0 28px;text-align:center;color:var(--muted);font-size:13px}
 
@@ -109,4 +115,36 @@
 
     <section id="apartments" class="section">
       <h2 style="margin:0 0 16px">Доступные апартаменты</h2>
-      <div id="cards" class="
+      <div id="cards" class="grid"></div>
+    </section>
+  </main>
+
+  <section id="contact" class="wrap section">
+      <div class="contact-panel">
+          <h2>Связаться для бронирования</h2>
+          <p style="margin:0 0 10px;">⏰ 09:00–21:00</p>
+          <p style="margin:0 0 10px;">Мистер Виктор: только WhatsApp +34 673 567 996 ( 🇬🇧 English / 🇪🇸 Español / 🇷🇺 Русский )</p>
+          <p style="margin:0 0 10px;">Мистер Шериф: +20 109 617 6893 ( 🇪🇬 العربية. )</p>
+          <p style="margin:0 0 10px;">Email: 9621441@gmail.com</p>
+      </div>
+  </section>
+
+  <footer>© <span id="year"></span> Amwaj Apartments</footer>
+
+  <div class="modal" id="gallery" role="dialog" aria-modal="true" aria-label="Галерея">
+    <div class="modal-inner">
+      <div class="modal-bar">
+        <div id="gTitle"></div>
+        <div class="modal-actions">
+          <button class="btn" id="prev">←</button>
+          <button class="btn" id="next">→</button>
+          <button class="btn primary" id="close">Закрыть</button>
+        </div>
+      </div>
+      <img id="gImg" alt="Фото апартаментов">
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
